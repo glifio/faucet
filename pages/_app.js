@@ -1,5 +1,6 @@
 import App from 'next/app'
 import Head from 'next/head'
+import { theme, ThemeProvider } from '../components/Shared'
 
 import '../stylesheets/normalize.css'
 import '../stylesheets/styles.css'
@@ -37,7 +38,9 @@ class MyApp extends App {
             href='/favicon-32x32.png'
           />
         </Head>
-        <Component {...pageProps} />
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
       </>
     )
   }

@@ -5,11 +5,10 @@ export default ({ code }) => {
   const [filAddress, setFilAddress] = useState('')
   const onSubmit = async (e) => {
     e.preventDefault()
-    console.log('Sending code and FIL address to server!', code, filAddress)
     const res = await axios.post(`${process.env.GITHUB_AUTH_SERVER_URL}`, {
       code,
       filecoinAddress: filAddress,
-      state: process.env.OAUTH_STATE_STRING,
+      state: process.env.OAUTH_STATE_STRING
     })
     // handle errors / success
   }
