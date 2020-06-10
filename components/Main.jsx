@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
-import { Box, Text, Card, StepHeader, IconGitHub } from './Shared'
+import { Box, Text, Card, StepHeader } from './Shared'
 
 export default () => {
   const router = useRouter()
@@ -27,13 +27,17 @@ export default () => {
           flexDirection='column'
           flexWrap='wrap'
           justifyContent='space-between'
-          maxWidth={16}
-          width={11}
-          height={11}
+          maxWidth='380px'
+          maxHeight='380px'
+          width='380px'
+          height='380px'
+          bg='background.screen'
         >
-          <StepHeader currentStep={1} totalSteps={2} glyphAcronym='Vr' />
-          <Text>Auth</Text>
-          <IconGitHub />
+          {router.query.code ? (
+            <PostAuth code={router.query.code} />
+          ) : (
+            <PreAuth />
+          )}
         </Card>
         <Box height={5} />
         <Card
@@ -48,12 +52,12 @@ export default () => {
           flexDirection='row'
           flexWrap='wrap'
           justifyContent='center'
-          maxWidth={16}
-          width={11}
-          height={11}
+          maxWidth='380px'
+          maxHeight='380px'
+          width='380px'
+          height='380px'
         />
       </Box>
-      {/* {router.query.code ? <PostAuth code={router.query.code} /> : <PreAuth />} */}
     </>
   )
 }

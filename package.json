@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@openworklabs/filecoin-address": "0.0.4",
-    "@primer/octicons-react": "^9.6.0",
     "axios": "^0.19.2",
     "next": "9.4.4",
     "react": "16.13.1",

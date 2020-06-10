@@ -77,3 +77,10 @@ Num.propTypes = {
   children: node.isRequired,
   size: oneOf(Object.keys(theme.textStyles.num))
 }
+
+export const InputLabelBase = styled.label`
+  ${color}
+  ${typography}
+  ${layout}
+  ${space}
+`
