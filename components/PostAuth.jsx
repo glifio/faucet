@@ -67,18 +67,20 @@ export default ({ code }) => {
             justifyContent='flex-start'
             width='100%'
           >
-            <InputLabelBase htmlFor='fil-address'>FIL Address</InputLabelBase>
+            <InputLabelBase htmlFor='fil-address'>
+              Your FIL Address
+            </InputLabelBase>
             <Box height={1} />
             <Input.Base
               id='fil-address'
-              height={6}
-              maxHeight={6}
+              height={7}
               placeholder='f1OwL...'
               value={filAddress}
               onChange={(e) => {
                 setErr('')
                 setFilAddress(e.target.value)
               }}
+              borderRadius={2}
             />
             {err && (
               <Label color='status.fail.background' mt={3} mb={0}>

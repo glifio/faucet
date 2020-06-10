@@ -16,22 +16,24 @@ export default () => {
         flexGrow='1'
         flexDirection='column'
         alignItems='center'
+        p={3}
       >
         <Card
           minHeight={10}
           p={3}
-          border={1}
+          border={0}
           borderRadius={2}
           borderWidth={1}
           overflow='hidden'
           display='flex'
           flexDirection='column'
-          flexWrap='wrap'
+          justifyContent='space-between'
           maxWidth='380px'
           maxHeight='380px'
           width='380px'
           height='380px'
           bg='background.screen'
+          boxShadow={2}
         >
           {router.query.code ? (
             <PostAuth code={router.query.code} />
