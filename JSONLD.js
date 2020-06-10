@@ -1,10 +1,19 @@
 export default {
   '@context': 'http://schema.org/',
-  '@type': 'Organization',
-  name: 'Glif',
-  description: 'An interoperable set of tools on the Filecoin network.',
-  url: 'https://glif.io',
-  owns: [
+  '@type': 'WebApplication',
+  name: 'Glif Verifier',
+  description: 'Granting verified data allowances to Filecoin addresses.',
+  url: 'https://verify.glif.io',
+  applicationCategory: 'Blockchain wallet',
+  operatingSystem: 'All',
+  knowsAbout: [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Filecoin',
+      url: 'https://filecoin.io',
+      applicationCategory: 'Blockchain network',
+      operatingSystem: 'All'
+    },
     {
       '@type': 'WebApplication',
       name: 'Glif Wallet',
@@ -13,22 +22,6 @@ export default {
       applicationCategory: 'Blockchain wallet',
       operatingSystem: 'All'
     },
-    {
-      '@type': 'WebApplication',
-      name: 'Glif Nodes',
-      description: 'Private and public gateways to the Filecoin network.',
-      applicationCategory: 'Blockchain node infrastructure',
-      operatingSystem: 'All'
-    }
-  ],
-  knowsAbout: [
-    {
-      '@type': 'SoftwareApplication',
-      name: 'Filecoin',
-      url: 'https://filecoin.io',
-      applicationCategory: 'Blockchain network',
-      operatingSystem: 'All'
-    }
   ],
   parentOrganization: {
     '@type': 'Organization',
