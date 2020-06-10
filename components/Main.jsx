@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
 import { Box, Text, Card, StepHeader } from './Shared'
+import CheckVerifiedStorageAmount from './CheckVerifiedStorageAmount'
 
 export default () => {
   const router = useRouter()
@@ -55,7 +56,9 @@ export default () => {
           maxHeight='380px'
           width='380px'
           height='380px'
-        />
+        >
+          <CheckVerifiedStorageAmount />
+        </Card>
       </Box>
     </>
   )
