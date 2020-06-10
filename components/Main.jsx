@@ -19,7 +19,6 @@ export default () => {
         p={3}
       >
         <Card
-          minHeight={10}
           p={3}
           border={0}
           borderRadius={2}
@@ -32,6 +31,7 @@ export default () => {
           maxHeight='380px'
           width='380px'
           height='380px'
+          minHeight='380px'
           bg='background.screen'
           boxShadow={2}
         >
@@ -44,7 +44,6 @@ export default () => {
         <Box height={5} />
         <Card
           width='100%'
-          minHeight={10}
           p={3}
           border={1}
           borderRadius={2}
@@ -56,6 +55,7 @@ export default () => {
           justifyContent='center'
           maxWidth='380px'
           maxHeight='380px'
+          minHeight='380px'
           width='380px'
           height='380px'
         >
