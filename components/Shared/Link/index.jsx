@@ -3,16 +3,16 @@ import { color, typography, layout, space, grid, position } from 'styled-system'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 
-export const StyledATag = styled.a.attrs(props => ({
-  color: 'core.primary',
+export const StyledATag = styled.a.attrs((props) => ({
+  color: props.color || 'core.primary',
   fontSize: 3,
   ...props
 }))`
   text-decoration: none;
   transition: 0.18s ease-in-out;
-  border-bottom: 2px solid ${props => props.theme.colors.core.primary}00;
+  border-bottom: 2px solid ${(props) => props.theme.colors.core.primary}00;
   &:hover {
-    border-bottom: 2px solid ${props => props.theme.colors.core.primary};
+    border-bottom: 2px solid ${(props) => props.theme.colors.core.primary};
   }
   ${color}
   ${typography}

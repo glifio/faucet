@@ -26,7 +26,6 @@ export default () => {
           display='flex'
           flexDirection='column'
           flexWrap='wrap'
-          justifyContent='space-between'
           maxWidth='380px'
           maxHeight='380px'
           width='380px'

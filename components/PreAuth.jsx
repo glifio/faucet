@@ -8,7 +8,13 @@ export default () => {
         <StepHeader currentStep={1} totalSteps={2} glyphAcronym='Vr' />
         <Text>Link your GitHub account to get verified Filecoin storage.</Text>
       </Box>
-      <Box flexGrow='1' display='flex' flexDirection='row' alignItems='center'>
+      <Box
+        flexGrow='1'
+        display='flex'
+        flexDirection='row'
+        justifyContent='center'
+        alignItems='center'
+      >
         <IconGitHub
           css={`
             cursor: pointer;
