@@ -57,10 +57,10 @@ const StepHeader = ({
 
 StepHeader.propTypes = {
   loading: PropTypes.bool,
-  currentStep: PropTypes.number.isRequired,
+  currentStep: PropTypes.number,
   glyphAcronym: PropTypes.string,
   Icon: PropTypes.object,
-  totalSteps: PropTypes.number.isRequired,
+  totalSteps: PropTypes.number,
   error: PropTypes.bool,
   showStepper: PropTypes.bool
 }
@@ -69,7 +69,9 @@ StepHeader.defaultProps = {
   loading: false,
   error: false,
   glyphAcronym: '',
-  showStepper: true
+  showStepper: true,
+  currentStep: 0,
+  totalSteps: 0
 }
 
 export default StepHeader
