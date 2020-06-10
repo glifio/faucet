@@ -10,7 +10,7 @@ import {
   Input,
   InputLabelBase,
   Label,
-  Glyph
+  StepHeader
 } from './Shared'
 
 const Form = styled.form`
@@ -41,10 +41,12 @@ export default () => {
       justifyContent='space-between'
       height='100%'
     >
-      <Glyph acronym='Ck' />
+      <Box display='flex' flexDirection='row' alignItems='center'>
+        <StepHeader glyphAcronym='Ck' showStepper={false} title='Check' />
+      </Box>
       <Text>
-        Enter the Filecoin address to check its verified Filecoin storage
-        amount.
+        Enter a Filecoin address to check its verified Filecoin storage
+        allowance.
       </Text>
       <Form onSubmit={onSubmit}>
         <Box

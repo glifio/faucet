@@ -5,7 +5,12 @@ export default () => {
   return (
     <>
       <Box>
-        <StepHeader currentStep={1} totalSteps={2} glyphAcronym='Vr' />
+        <StepHeader
+          currentStep={1}
+          totalSteps={2}
+          glyphAcronym='Vr'
+          title='Verify'
+        />
         <Text>Link your GitHub account to get verified Filecoin storage.</Text>
       </Box>
       <Box

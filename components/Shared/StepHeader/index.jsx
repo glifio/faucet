@@ -6,6 +6,8 @@ import Stepper from '../Stepper'
 import Loading from '../LoaderGlyph'
 import Glyph from '../Glyph'
 import ErrorGlyph from '../Glyph/ErrorGlyph'
+import { Title } from '../Typography'
+import Box from '../Box'
 
 const StepHeader = ({
   currentStep,
@@ -14,6 +16,7 @@ const StepHeader = ({
   loading,
   totalSteps,
   showStepper,
+  title,
   error
 }) => {
   return (
@@ -24,11 +27,15 @@ const StepHeader = ({
       borderColor='silver'
       width='100%'
     >
-      <MenuItem display='flex' justifyContent='space-between'>
-        {error && <ErrorGlyph />}
-        {loading && !error && <Loading />}
-        {!loading && !error && <Glyph Icon={Icon} acronym={glyphAcronym} />}
-      </MenuItem>
+      <Box display='flex' flexDirection='row' alignItems='center'>
+        <MenuItem display='flex' justifyContent='space-between'>
+          {error && <ErrorGlyph />}
+          {loading && !error && <Loading />}
+          {!loading && !error && <Glyph Icon={Icon} acronym={glyphAcronym} />}
+        </MenuItem>
+        <Box width={2} />
+        {title && <Title>{title}</Title>}
+      </Box>
       {showStepper && (
         <MenuItem>
           <Stepper

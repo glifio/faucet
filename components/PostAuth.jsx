@@ -51,7 +51,12 @@ export default ({ code }) => {
         justifyContent='space-between'
         height='100%'
       >
-        <StepHeader currentStep={2} totalSteps={2} glyphAcronym='Vr' />
+        <StepHeader
+          currentStep={2}
+          totalSteps={2}
+          glyphAcronym='Vr'
+          title='Verify'
+        />
         <Text>
           Enter the Filecoin address to grant verified Filecoin storage.
         </Text>
