@@ -25,10 +25,13 @@ const Form = styled.form`
 export default () => {
   const [filAddress, setFilAddress] = useState('')
   const [err, setErr] = useState('')
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     const isValid = validateAddressString(filAddress)
     if (isValid) {
+      const res = await axios.get(
+        `${process.env.VERIFIER_URL}/account-remaining-bytes/${filAddress}`
+      )
     } else {
       setErr('Invalid Filecoin address.')
     }

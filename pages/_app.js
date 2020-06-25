@@ -4,15 +4,11 @@ import { theme, ThemeProvider } from '../components/Shared'
 
 import '../stylesheets/normalize.css'
 import '../stylesheets/styles.css'
+import { JwtProvider } from '../lib/JWTHandler'
 
 class MyApp extends App {
-  static getInitialProps({ ctx: { query, pathname } }) {
-    return { query, pathname }
-  }
-
   render() {
-    const { Component, pageProps, reduxStore, query, pathname } = this.props
-
+    const { Component, pageProps } = this.props
     return (
       <>
         <Head>
@@ -39,7 +35,9 @@ class MyApp extends App {
           />
         </Head>
         <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
+          <JwtProvider>
+            <Component {...pageProps} />
+          </JwtProvider>
         </ThemeProvider>
       </>
     )

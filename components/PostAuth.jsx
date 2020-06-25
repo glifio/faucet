@@ -12,6 +12,7 @@ import {
   InputLabelBase,
   Label
 } from './Shared'
+import { useJwt } from '../lib/JWTHandler'
 
 const Form = styled.form`
   display: flex;
@@ -25,17 +26,40 @@ const Form = styled.form`
 export default ({ code }) => {
   const [filAddress, setFilAddress] = useState('')
   const [err, setErr] = useState('')
+  const { jwt, storeJwt } = useJwt()
+
+  const getJWT = async (filAddress) => {
+    if (jwt) return jwt
+    const res = await axios.post(`${process.env.VERIFIER_URL}/oauth/github`, {
+      code,
+      filecoinAddress: filAddress,
+      state: process.env.OAUTH_STATE_STRING
+    })
+    if (res.status !== 200) throw new Error(res.statusText)
+    storeJwt(res.data.jwt)
+    return res.data.jwt
+  }
+
+  const verify = async (jwt, filAddress) => {
+    const res = await axios.post(
+      `${process.env.VERIFIER_URL}/verify`,
+      {
+        targetAddr: filAddress
+      },
+      {
+        headers: { Authorization: `Bearer ${jwt}` }
+      }
+    )
+    console.log(res)
+  }
+
   const onSubmit = async (e) => {
     e.preventDefault()
     const isValid = validateAddressString(filAddress)
     if (isValid) {
       try {
-        const res = await axios.post(`${process.env.GITHUB_AUTH_SERVER_URL}`, {
-          code,
-          filecoinAddress: filAddress,
-          state: process.env.OAUTH_STATE_STRING
-        })
-        // handle response errors like: account too young, already have too muc hstorage... etc
+        const jwt = await getJWT(filAddress)
+        await verify(jwt, filAddress)
       } catch (error) {
         setErr(error.message)
       }

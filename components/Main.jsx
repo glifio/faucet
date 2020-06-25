@@ -2,11 +2,13 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
-import { Box, Text, Card, StepHeader } from './Shared'
+import { Box, Card } from './Shared'
 import CheckVerifiedStorageAmount from './CheckVerifiedStorageAmount'
+import { useJwt } from '../lib/JWTHandler'
 
 export default () => {
   const router = useRouter()
+  const { jwt } = useJwt()
   return (
     <>
       <Box
