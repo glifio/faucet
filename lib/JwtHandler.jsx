@@ -1,4 +1,5 @@
 import React, { useState, createContext, useContext, useEffect } from 'react'
+import { node } from 'prop-types'
 
 const JwtContext = createContext({})
 
@@ -21,6 +22,14 @@ export const JwtProvider = ({ children }) => {
       {children}
     </JwtContext.Provider>
   )
+}
+
+JwtProvider.propTypes = {
+  children: node
+}
+
+JwtProvider.defaultProps = {
+  children: <></>
 }
 
 export const useJwt = () => {
