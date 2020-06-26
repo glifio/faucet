@@ -25,16 +25,22 @@ const Form = styled.form`
 export default () => {
   const [filAddress, setFilAddress] = useState('')
   const [err, setErr] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [remainingBytes, setRemainingBytes] = useState(null)
   const onSubmit = async (e) => {
     e.preventDefault()
     const isValid = validateAddressString(filAddress)
     if (isValid) {
+      setLoading(true)
       const res = await axios.get(
         `${process.env.VERIFIER_URL}/account-remaining-bytes/${filAddress}`
       )
+      if (res.status !== 200) setErr(res.statusText)
+      else setRemainingBytes(res.data)
     } else {
       setErr('Invalid Filecoin address.')
     }
+    setLoading(false)
   }
   return (
     <Box
@@ -45,45 +51,66 @@ export default () => {
       height='100%'
     >
       <Box display='flex' flexDirection='row' alignItems='center'>
-        <StepHeader glyphAcronym='Ck' showStepper={false} title='Check' />
+        <StepHeader
+          glyphAcronym='Ck'
+          showStepper={false}
+          title='Check'
+          loading={loading}
+        />
       </Box>
-      <Text>
-        Enter a Filecoin address to check its verified Filecoin storage
-        allowance.
-      </Text>
-      <Form onSubmit={onSubmit}>
-        <Box
-          display='flex'
-          flexDirection='column'
-          justifyContent='flex-start'
-          width='100%'
-        >
-          <InputLabelBase htmlFor='fil-address'>
-            Your FIL Address
-          </InputLabelBase>
-          <Box height={1} />
-          <Input.Base
-            id='fil-address'
-            height={7}
-            borderRadius={2}
-            placeholder='f1OwL...'
-            value={filAddress}
-            onChange={(e) => {
-              setErr('')
-              setFilAddress(e.target.value)
-            }}
-          />
-          {err && (
-            <Label color='status.fail.background' mt={3} mb={0}>
-              {err}
-            </Label>
-          )}
-        </Box>
-        <Box height={2} />
-        <Button type='submit' title='Submit' variant='secondary' width='100%'>
-          Check
-        </Button>
-      </Form>
+      {remainingBytes ? (
+        <>
+          <Text color='core.primary'>
+            {filAddress} has {remainingBytes} bytes of verified Filecoin storage
+            left.
+          </Text>
+        </>
+      ) : (
+        <>
+          <Text>
+            Enter a Filecoin address to check its verified Filecoin storage
+            allowance.
+          </Text>
+          <Form onSubmit={onSubmit}>
+            <Box
+              display='flex'
+              flexDirection='column'
+              justifyContent='flex-start'
+              width='100%'
+            >
+              <InputLabelBase htmlFor='fil-address'>
+                Your FIL Address
+              </InputLabelBase>
+              <Box height={1} />
+              <Input.Base
+                id='fil-address'
+                height={7}
+                borderRadius={2}
+                placeholder='f1OwL...'
+                value={filAddress}
+                onChange={(e) => {
+                  setErr('')
+                  setFilAddress(e.target.value)
+                }}
+              />
+              {err && (
+                <Label color='status.fail.background' mt={3} mb={0}>
+                  {err}
+                </Label>
+              )}
+            </Box>
+            <Box height={2} />
+            <Button
+              type='submit'
+              title='Submit'
+              variant='secondary'
+              width='100%'
+            >
+              Check
+            </Button>
+          </Form>
+        </>
+      )}
     </Box>
   )
 }
