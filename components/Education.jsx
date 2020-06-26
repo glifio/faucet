@@ -3,8 +3,8 @@ import { Box, IconGlif, StyledATag, Title, Text, BigTitle } from './Shared'
 const QA = ({ question, answers }) => (
   <Box mt={4}>
     <Title color='core.white'>{question}</Title>
-    {answers.map((answer) => (
-      <Text mt={4} color='core.white'>
+    {answers.map((answer, i) => (
+      <Text key={i} mt={4} color='core.white'>
         {answer}
       </Text>
     ))}
