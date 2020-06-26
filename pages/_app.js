@@ -1,10 +1,10 @@
 import App from 'next/app'
 import Head from 'next/head'
 import { theme, ThemeProvider } from '../components/Shared'
-
+import { JwtProvider } from '../lib/JWTHandler'
+import { MessageConfirmerProvider } from '../lib/ConfirmMessage'
 import '../stylesheets/normalize.css'
 import '../stylesheets/styles.css'
-import { JwtProvider } from '../lib/JWTHandler'
 
 class MyApp extends App {
   render() {
@@ -35,9 +35,11 @@ class MyApp extends App {
           />
         </Head>
         <ThemeProvider theme={theme}>
-          <JwtProvider>
-            <Component {...pageProps} />
-          </JwtProvider>
+          <MessageConfirmerProvider>
+            <JwtProvider>
+              <Component {...pageProps} />
+            </JwtProvider>
+          </MessageConfirmerProvider>
         </ThemeProvider>
       </>
     )

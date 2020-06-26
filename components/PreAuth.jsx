@@ -7,7 +7,7 @@ export default () => {
       <Box>
         <StepHeader
           currentStep={1}
-          totalSteps={2}
+          totalSteps={3}
           glyphAcronym='Vr'
           title='Verify'
         />

@@ -1,9 +1,13 @@
 import { Box, IconGlif, StyledATag, Title, Text, BigTitle } from './Shared'
 
-const QA = ({ question, answer }) => (
-  <Box>
+const QA = ({ question, answers }) => (
+  <Box mt={4}>
     <Title color='core.white'>{question}</Title>
-    <Text color='core.white'>{answer}</Text>
+    {answers.map((answer) => (
+      <Text mt={4} color='core.white'>
+        {answer}
+      </Text>
+    ))}
   </Box>
 )
 
@@ -41,32 +45,37 @@ export default () => (
           justifyContent='spaced-evenly'
           mt={4}
         >
-          <Box mt={4}>
-            <QA
-              question='What is verified Filecoin data?'
-              answer='Data that is considered "real" by the Filecoin network.'
-            />
-          </Box>
-          <Box mt={4}>
-            <QA
-              question='Why does it matter?'
-              answer='The Filecoin network incentivizes storing real data in the network and not garbage data. Storing verified Filecoin data is cheaper because it’s more valuable to miners.'
-            />
-          </Box>
-          <Box mt={4}>
-            <QA
-              question='How do I verify my data?'
-              answer="As long as you're a real person, your data is considered verified!
-            Simply link your GitHub account to a Filecoin address, and we'll
-            grant that address 32 GB of verified Filecoin data."
-            />
-          </Box>
-          <Box mt={4}>
-            <QA
-              question='How can I get more verified data?'
-              answer='Once your Filecoin address has less than 3 GB of verified data allowance, come back here and follow the same steps.'
-            />
-          </Box>
+          <QA
+            question='What is a Filecoin verified client?'
+            answers={[
+              'A verified client is anyone who is likely to be using Filecoin to store and use real data.'
+            ]}
+          />
+          <QA
+            question='What is a Filecoin verifier?'
+            answers={[
+              'A verifier is someone who is charged with assessing the amount of data a verified client is likely to require, and granting them a data cap up to that amount. This app is one example of a verifier.'
+            ]}
+          />
+          <QA
+            question='Why does it matter?'
+            answers={[
+              'Data stored by verified clients makes Filecoin storage miners eligible for more block rewards. This drives miners to compete for verified client deals by improving quality of service.'
+            ]}
+          />
+          <QA
+            question='How do I become a verified client?'
+            answers={[
+              "This app provides small data caps to anyone who has a GitHub account over 180 days old to make testing and experimentation easy. Simply link your GitHub account to a Filecoin address, and we'll grant that address 8 GB of verified Filecoin data.",
+              'If you’re looking to store larger amounts of data on Filecoin, there are many verifiers who can grant larger data caps. A list of verifiers will be added below when it’s available.'
+            ]}
+          />
+          <QA
+            question='How can I get more verified data?'
+            answers={[
+              'Once your Filecoin address has exhausted its verified data allowance, come back here and follow the same steps. This process can only be repeated at most once per 30 days.'
+            ]}
+          />
         </Box>
       </Box>
       <StyledATag
