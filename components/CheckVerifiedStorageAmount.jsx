@@ -36,7 +36,7 @@ export default () => {
         `${process.env.VERIFIER_URL}/account-remaining-bytes/${filAddress}`
       )
       if (res.status !== 200) setErr(res.statusText)
-      else setRemainingBytes(res.data)
+      else setRemainingBytes(res.data.remainingBytes)
     } else {
       setErr('Invalid Filecoin address.')
     }

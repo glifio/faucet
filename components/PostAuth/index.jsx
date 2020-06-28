@@ -13,7 +13,7 @@ import {
   Label
 } from '../Shared'
 import { Confirming, Confirmed } from './CardStates'
-import { useJwt } from '../../lib/JWTHandler'
+import { useJwt } from '../../lib/JwtHandler'
 import { useMessageConfirmation } from '../../lib/ConfirmMessage'
 
 const Form = styled.form`
@@ -75,6 +75,7 @@ export default ({ code }) => {
     const isValid = validateAddressString(filAddress)
     if (isValid) {
       setConfirming(true)
+      setFilAddress('')
       try {
         const jwt = await getJWT(filAddress)
         const verificationCid = await verify(jwt, filAddress)

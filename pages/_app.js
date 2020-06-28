@@ -1,7 +1,7 @@
 import App from 'next/app'
 import Head from 'next/head'
 import { theme, ThemeProvider } from '../components/Shared'
-import { JwtProvider } from '../lib/JWTHandler'
+import { JwtProvider } from '../lib/JwtHandler'
 import { MessageConfirmerProvider } from '../lib/ConfirmMessage'
 import '../stylesheets/normalize.css'
 import '../stylesheets/styles.css'
