@@ -51,8 +51,7 @@ export default () => {
         headers: { Authorization: `Bearer ${jwt}` }
       }
     )
-
-    if (res.status !== 200) throw new Error(res.statusText)
+    if (res.status !== 200) throw new Error(res.data.error)
     setCidToConfirm(res.data.cid)
     return res.data.cid
   }
@@ -69,7 +68,7 @@ export default () => {
         await confirm(verificationCid)
         setConfirmed(true)
       } catch (error) {
-        setErr(error.message)
+        setErr(error.response.data.error)
       }
       setConfirming(false)
     } else {

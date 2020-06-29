@@ -17,7 +17,6 @@ export default class Callback extends Component {
       const jwt = await getJWT(query.code)
       return { jwt, err: null }
     } catch (err) {
-      console.log('err', err.message)
       return { jwt: '', err }
     }
   }
