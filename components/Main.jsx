@@ -1,12 +1,12 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
 import { Box, Card } from './Shared'
 import CheckVerifiedStorageAmount from './CheckVerifiedStorageAmount'
+import { useJwt } from '../lib/JwtHandler'
 
 export default () => {
-  const router = useRouter()
+  const { jwt } = useJwt()
   return (
     <>
       <Box
@@ -35,11 +35,7 @@ export default () => {
           bg='background.screen'
           boxShadow={2}
         >
-          {router.query.code ? (
-            <PostAuth code={router.query.code} />
-          ) : (
-            <PreAuth />
-          )}
+          {jwt ? <PostAuth /> : <PreAuth />}
         </Card>
         <Box height={5} />
         <Card

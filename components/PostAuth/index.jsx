@@ -32,26 +32,14 @@ const StepHeaderTitle = ({ confirming, confirmed, error }) => {
   if (!confirming && !confirmed) return 'Verify'
 }
 
-export default ({ code }) => {
+export default () => {
   const [filAddress, setFilAddress] = useState('')
   const [confirming, setConfirming] = useState(false)
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
   const [err, setErr] = useState('')
-  const { jwt, storeJwt } = useJwt()
+  const { jwt } = useJwt()
   const { confirm } = useMessageConfirmation()
-
-  const getJWT = async (filAddress) => {
-    if (jwt) return jwt
-    const res = await axios.post(`${process.env.VERIFIER_URL}/oauth/github`, {
-      code,
-      filecoinAddress: filAddress,
-      state: process.env.OAUTH_STATE_STRING
-    })
-    if (res.status !== 200) throw new Error(res.statusText)
-    storeJwt(res.data.jwt)
-    return res.data.jwt
-  }
 
   const verify = async (jwt, filAddress) => {
     const res = await axios.post(
@@ -77,7 +65,6 @@ export default ({ code }) => {
       setConfirming(true)
       setFilAddress('')
       try {
-        const jwt = await getJWT(filAddress)
         const verificationCid = await verify(jwt, filAddress)
         await confirm(verificationCid)
         setConfirmed(true)
