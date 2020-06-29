@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { validateAddressString } from '@openworklabs/filecoin-address'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
 
 import {
   Box,
@@ -27,6 +31,7 @@ export default () => {
   const [err, setErr] = useState('')
   const [loading, setLoading] = useState(false)
   const [remainingBytes, setRemainingBytes] = useState(null)
+  const [mostRecentAllocation, setMostRecentAllocation] = useState('')
   const onSubmit = async (e) => {
     e.preventDefault()
     const isValid = validateAddressString(filAddress)
@@ -36,7 +41,10 @@ export default () => {
         `${process.env.VERIFIER_URL}/account-remaining-bytes/${filAddress}`
       )
       if (res.status !== 200) setErr(res.statusText)
-      else setRemainingBytes(res.data.remainingBytes)
+      else {
+        setRemainingBytes(res.data.remainingBytes)
+        setMostRecentAllocation(res.data.mostRecentAllocation)
+      }
     } else {
       setErr('Invalid Filecoin address.')
     }
@@ -63,6 +71,10 @@ export default () => {
           <Text color='core.primary'>
             {filAddress} has {remainingBytes} bytes of verified Filecoin storage
             left.
+          </Text>
+          <Text color='core.black'>
+            {filAddress} can reup its verified Filecoin data{' '}
+            {dayjs().to(dayjs(mostRecentAllocation).add(30, 'day'))}.
           </Text>
         </>
       ) : (
