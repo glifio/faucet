@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { validateAddressString } from '@openworklabs/filecoin-address'
@@ -15,6 +15,7 @@ import {
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
 import { useMessageConfirmation } from '../../lib/ConfirmMessage'
+import { getVerification } from '../../utils/storage'
 
 const Form = styled.form`
   display: flex;
@@ -41,19 +42,46 @@ export default () => {
   const { jwt } = useJwt()
   const { confirm } = useMessageConfirmation()
 
-  const verify = async (jwt, filAddress) => {
-    const res = await axios.post(
-      `${process.env.VERIFIER_URL}/verify`,
-      {
-        targetAddr: filAddress
-      },
-      {
-        headers: { Authorization: `Bearer ${jwt}` }
+  useEffect(() => {
+    const confirmMsgFromStorage = async (cid, address) => {
+      setConfirming(true)
+      try {
+        await confirm(cid, address)
+        setConfirmed(true)
+      } catch (err) {
+        setFilAddress('')
+        setErr(err.message)
       }
-    )
-    if (res.status !== 200) throw new Error(res.data.error)
-    setCidToConfirm(res.data.cid)
-    return res.data.cid
+      setConfirming(false)
+    }
+    const pendingVerification = getVerification()
+    if (pendingVerification.cid && !confirming) {
+      confirmMsgFromStorage(
+        pendingVerification.cid,
+        pendingVerification.address
+      )
+      setFilAddress(pendingVerification.address)
+    }
+  }, [confirming, confirm, setConfirming, setErr])
+
+  const verify = async (jwt, filAddress) => {
+    try {
+      const res = await axios.post(
+        `${process.env.VERIFIER_URL}/verify`,
+        {
+          targetAddr: filAddress
+        },
+        {
+          headers: { Authorization: `Bearer ${jwt}` }
+        }
+      )
+      if (res.status !== 200) throw new Error(res.data.error)
+      setCidToConfirm(res.data.cid)
+      return res.data.cid
+    } catch (err) {
+      // throw a more readable error response from axios
+      throw new Error(err.response.data.error)
+    }
   }
 
   const onSubmit = async (e) => {
@@ -62,17 +90,18 @@ export default () => {
     const isValid = validateAddressString(filAddress)
     if (isValid) {
       setConfirming(true)
-      setFilAddress('')
       try {
         const verificationCid = await verify(jwt, filAddress)
         await confirm(verificationCid)
         setConfirmed(true)
       } catch (error) {
-        setErr(error.response.data.error)
+        setErr(error.message)
+        setFilAddress('')
       }
       setConfirming(false)
     } else {
       setErr('Invalid Filecoin address.')
+      setFilAddress('')
     }
   }
 
