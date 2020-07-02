@@ -1,17 +1,20 @@
 import styled from 'styled-components'
 import Main from '../components/Main'
 import Education from '../components/Education'
+import Footer from '../components/Footer'
 
-const Layout = styled.main`
+const Layout = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  height: 100vh;
 `
 
 export default function Home() {
   return (
     <Layout>
-      <Education />
       <Main />
+      <Education />
+      <Footer />
     </Layout>
   )
 }

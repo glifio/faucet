@@ -21,7 +21,7 @@ export const Confirming = ({ cid, err }) => {
           target='_blank'
           href={`https://filscan.io/#/message/detail?cid=${cid}`}
         >
-          <Label color='core,primary'>View transaction on Filscan</Label>
+          <Label color='core.primary'>View transaction on Filscan</Label>
         </StyledATag>
         {err && (
           <Label color='status.fail.background' mt={3} mb={0}>
@@ -45,7 +45,13 @@ Confirming.defaultProps = {
 export const Confirmed = ({ address, cid }) => {
   return (
     <>
-      <Text>All set! {address} has 8 GB of verified Filecoin data.</Text>
+      <Text>
+        All set!{' '}
+        <Text display='inline' color='core.primary'>
+          {address}
+        </Text>{' '}
+        has 8 GB of verified Filecoin data.
+      </Text>
       <StyledATag
         rel='noopener noreferrer'
         target='_blank'

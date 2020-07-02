@@ -5,25 +5,17 @@ import { validateAddressString } from '@openworklabs/filecoin-address'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
+import { Card } from './Shared'
+
 dayjs.extend(relativeTime)
 
-import {
-  Box,
-  Button,
-  Text,
-  Input,
-  InputLabelBase,
-  Label,
-  StepHeader
-} from './Shared'
+import { Box, Button, Text, Input, Label, StepHeader } from './Shared'
 
 const Form = styled.form`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  width: 100%;
   flex-grow: 1;
-  justify-content: space-around;
 `
 
 export default () => {
@@ -52,51 +44,49 @@ export default () => {
   }
   return (
     <Box
-      width='100%'
       display='flex'
       flexDirection='column'
-      justifyContent='space-between'
-      height='100%'
+      m={3}
+      mt={[4, 6]}
+      width='100%'
+      maxWidth={14}
     >
-      <Box display='flex' flexDirection='row' alignItems='center'>
-        <StepHeader
-          glyphAcronym='Ck'
-          showStepper={false}
-          title='Check'
-          loading={loading}
-        />
-      </Box>
-      {remainingBytes ? (
-        <>
-          <Text color='core.primary'>
-            {filAddress} has {remainingBytes} bytes of verified Filecoin storage
-            left.
-          </Text>
-          <Text color='core.black'>
-            {filAddress} can reup its verified Filecoin data{' '}
-            {dayjs().to(dayjs(mostRecentAllocation).add(30, 'day'))}.
-          </Text>
-        </>
-      ) : (
-        <>
-          <Text>
-            Enter a Filecoin address to check its verified Filecoin storage
-            allowance.
-          </Text>
+      <Text color='core.darkgray' textAlign='center' m='0' p='0'>
+        Enter an address to check its current verified data allowance
+      </Text>
+      <Card
+        p={3}
+        mt={3}
+        border={0}
+        display='flex'
+        flexDirection='column'
+        justifyContent='space-between'
+        bg='background.screen'
+        boxShadow={2}
+      >
+        <Box
+          display='flex'
+          flexDirection='row'
+          justifyContent='space-between'
+          flexWrap='wrap'
+        >
+          <StepHeader
+            glyphAcronym='Ck'
+            showStepper={false}
+            title=''
+            loading={loading}
+            width='auto'
+          />
           <Form onSubmit={onSubmit}>
-            <Box
-              display='flex'
-              flexDirection='column'
-              justifyContent='flex-start'
-              width='100%'
-            >
-              <InputLabelBase htmlFor='fil-address'>
-                Your FIL Address
-              </InputLabelBase>
-              <Box height={1} />
+            <Box display='flex' flexGrow='1' flexWrap='wrap'>
               <Input.Base
-                id='fil-address'
+                width='auto'
+                flexShrink='1'
                 height={7}
+                minWidth={11}
+                mr={2}
+                mt={[2, 2, 0]}
+                overflow='scroll'
                 borderRadius={2}
                 placeholder='f1OwL...'
                 value={filAddress}
@@ -105,24 +95,35 @@ export default () => {
                   setFilAddress(e.target.value)
                 }}
               />
-              {err && (
-                <Label color='status.fail.background' mt={3} mb={0}>
-                  {err}
-                </Label>
-              )}
+              <Button
+                type='submit'
+                title='Check'
+                variant='secondary'
+                mt={[2, 2, 0]}
+              />
             </Box>
-            <Box height={2} />
-            <Button
-              type='submit'
-              title='Submit'
-              variant='secondary'
-              width='100%'
-            >
-              Check
-            </Button>
           </Form>
-        </>
-      )}
+        </Box>
+      </Card>
+      <Box p={3} pt={0} mx={3}>
+        {remainingBytes && !err && (
+          <>
+            <Text color='core.primary'>
+              {filAddress} has {remainingBytes} bytes of verified Filecoin
+              storage left.
+            </Text>
+            <Text color='core.black'>
+              {filAddress} can reup its verified Filecoin data{' '}
+              {dayjs().to(dayjs(mostRecentAllocation).add(30, 'day'))}.
+            </Text>
+          </>
+        )}
+        {err && (
+          <Label color='status.fail.background' mt={3} mb={0}>
+            {err}
+          </Label>
+        )}
+      </Box>
     </Box>
   )
 }

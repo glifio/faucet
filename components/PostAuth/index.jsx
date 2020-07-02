@@ -10,7 +10,8 @@ import {
   Text,
   Input,
   InputLabelBase,
-  Label
+  Label,
+  Card
 } from '../Shared'
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
@@ -19,18 +20,16 @@ import { getVerification } from '../../utils/storage'
 
 const Form = styled.form`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  width: 100%;
   flex-grow: 1;
-  justify-content: space-around;
 `
 
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
-  if (error) return 'Error'
+  if (error) return 'Oops. Please try again.'
   if (confirming) return 'Confirming...'
-  if (confirmed) return 'Verified'
-  if (!confirming && !confirmed) return 'Verify'
+  if (confirmed) return 'You have successfully verified'
+  if (!confirming && !confirmed) return ''
 }
 
 export default () => {
@@ -39,7 +38,7 @@ export default () => {
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
   const [err, setErr] = useState('')
-  const { jwt } = useJwt()
+  const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
 
   useEffect(() => {
@@ -105,45 +104,61 @@ export default () => {
     }
   }
 
+  const reset = () => {
+    setErr('')
+    setFilAddress('')
+    removeJwt('')
+  }
+
   return (
-    <>
-      <Box
+    <Box display='flex' flexDirection='column' m={3} width='100%' maxWidth={14}>
+      <Text color='core.darkgray' textAlign='center' m='0' p='0'>
+        {!confirmed &&
+          !confirming &&
+          !err &&
+          'Enter an address to grant an 8GB verified data allowance'}
+        {confirming && '.  .  .'}
+        {confirmed && 'Niceee, transaction success!'}
+        {err && 'Uh oh'}
+      </Text>
+      <Card
+        p={3}
+        mt={3}
+        border={0}
         display='flex'
         flexDirection='column'
         justifyContent='space-between'
-        height='100%'
+        minWidth={11}
+        bg={
+          confirmed
+            ? 'status.success.background'
+            : err
+            ? 'status.fail.background'
+            : 'background.screen'
+        }
+        boxShadow={2}
       >
-        <StepHeader
-          currentStep={confirming ? 3 : 2}
-          showStepper={!confirmed}
-          totalSteps={3}
-          glyphAcronym='Vr'
-          loading={confirming}
-          title={StepHeaderTitle({ confirmed, confirming, error: err })}
-        />
-        {confirming && <Confirming cid={cidToConfirm} err={err} />}
-        {!confirming && confirmed && (
-          <Confirmed address={filAddress} cid={cidToConfirm} />
-        )}
-        {!confirming && !confirmed && (
-          <>
-            <Text>
-              Enter the Filecoin address to grant verified Filecoin storage.
-            </Text>
+        <Box display='flex' flexWrap='wrap' justifyContent='space-between'>
+          <StepHeader
+            showStepper={false}
+            glyphAcronym={err ? 'Er' : 'Vr'}
+            loading={confirming}
+            title=''
+            width='auto'
+            title={StepHeaderTitle({ confirmed, confirming, error: err })}
+          />
+          {!confirming && !confirmed && !err && (
             <Form onSubmit={onSubmit}>
-              <Box
-                display='flex'
-                flexDirection='column'
-                justifyContent='flex-start'
-                width='100%'
-              >
-                <InputLabelBase htmlFor='fil-address'>
-                  Your FIL Address
-                </InputLabelBase>
-                <Box height={1} />
+              <Box display='flex' flexGrow='1' flexWrap='wrap'>
                 <Input.Base
-                  id='fil-address'
+                  width='auto'
+                  flexShrink='1'
                   height={7}
+                  minWidth={11}
+                  mr={2}
+                  mt={[2, 2, 0]}
+                  overflow='scroll'
+                  borderRadius={2}
                   placeholder='f1OwL...'
                   value={filAddress}
                   onChange={(e) => {
@@ -152,18 +167,24 @@ export default () => {
                   }}
                   borderRadius={2}
                 />
-                {err && (
-                  <Label color='status.fail.background' mt={3} mb={0}>
-                    {err}
-                  </Label>
-                )}
+                <Button mt={[2, 2, 0]} type='submit' title='Verify' />
               </Box>
-              <Box height={2} />
-              <Button type='submit' title='Verify' />
             </Form>
-          </>
+          )}
+          {err && <Button variant='secondary' title='Retry' onClick={reset} />}
+        </Box>
+      </Card>
+      <Box p={3} pt={0} mx={3}>
+        {confirming && <Confirming cid={cidToConfirm} err={err} />}
+        {!confirming && confirmed && (
+          <Confirmed address={filAddress} cid={cidToConfirm} />
+        )}
+        {err && (
+          <Label color='status.fail.background' mt={3} mb={0}>
+            {err}
+          </Label>
         )}
       </Box>
-    </>
+    </Box>
   )
 }

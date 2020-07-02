@@ -17,8 +17,14 @@ export const JwtProvider = ({ children }) => {
     setJwt(jwt)
     window.localStorage.setItem('verifier-jwt', jwt)
   }
+
+  const removeJwt = () => {
+    setJwt('')
+    window.localStorage.removeItem('verifier-jwt')
+  }
+
   return (
-    <JwtContext.Provider value={{ jwt, storeJwt }}>
+    <JwtContext.Provider value={{ jwt, removeJwt, storeJwt }}>
       {children}
     </JwtContext.Provider>
   )

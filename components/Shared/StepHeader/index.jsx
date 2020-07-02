@@ -17,7 +17,8 @@ const StepHeader = ({
   totalSteps,
   showStepper,
   title,
-  error
+  error,
+  ...props
 }) => {
   return (
     <Menu
@@ -26,6 +27,7 @@ const StepHeader = ({
       justifyContent='space-between'
       borderColor='silver'
       width='100%'
+      {...props}
     >
       <Box display='flex' flexDirection='row' alignItems='center'>
         <MenuItem display='flex' justifyContent='space-between'>

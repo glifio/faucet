@@ -5,9 +5,9 @@ import { baseColors } from '../theme'
 import Box from '../Box'
 
 const GlyphText = styled.h3`
-  font-family: ${props => props.theme.fonts.AliasMedium};
+  font-family: ${(props) => props.theme.fonts.AliasMedium};
   font-weight: 700;
-  font-size: ${props => props.theme.fontSizes[4]};
+  font-size: ${(props) => props.theme.fontSizes[4]};
 `
 
 const Glyph = forwardRef(
@@ -17,6 +17,7 @@ const Glyph = forwardRef(
       alignItems='center'
       justifyContent='center'
       size={6}
+      borderRadius={2}
       borderWidth='0.1875rem'
       borderStyle={0}
       backgroundColor={backgroundColor}
