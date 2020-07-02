@@ -150,7 +150,9 @@ export default () => {
           {!confirming && !confirmed && !err && (
             <Form onSubmit={onSubmit}>
               <Box display='flex' flexGrow='1' flexWrap='wrap'>
+                <InputLabelBase display='none' htmlFor='fil-address' />
                 <Input.Base
+                  id='fil-address'
                   width='auto'
                   flexShrink='1'
                   height={7}
@@ -165,7 +167,6 @@ export default () => {
                     setErr('')
                     setFilAddress(e.target.value)
                   }}
-                  borderRadius={2}
                 />
                 <Button mt={[2, 2, 0]} type='submit' title='Verify' />
               </Box>

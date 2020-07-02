@@ -58,10 +58,7 @@ export default () => {
           alignItems='center'
           textAlign='center'
         >
-          <Title fontSize={5}>Verify your Filecoin storage</Title>
-          <Text mt={[2, 4]} fontSize={4} textAlign='center'>
-            Verified storage is cheaper for you to store and maintain.
-          </Text>
+          <Title fontSize={5}>Get verified Filecoin data</Title>
         </Box>
       </Box>
       <Box

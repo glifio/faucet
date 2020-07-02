@@ -5,11 +5,18 @@ import { validateAddressString } from '@openworklabs/filecoin-address'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
-import { Card } from './Shared'
+import {
+  Box,
+  Button,
+  Card,
+  Text,
+  Input,
+  InputLabelBase,
+  Label,
+  StepHeader
+} from './Shared'
 
 dayjs.extend(relativeTime)
-
-import { Box, Button, Text, Input, Label, StepHeader } from './Shared'
 
 const Form = styled.form`
   display: flex;
@@ -79,7 +86,9 @@ export default () => {
           />
           <Form onSubmit={onSubmit}>
             <Box display='flex' flexGrow='1' flexWrap='wrap'>
+              <InputLabelBase display='none' htmlFor='check-fil-address' />
               <Input.Base
+                id='check-fil-address'
                 width='auto'
                 flexShrink='1'
                 height={7}
