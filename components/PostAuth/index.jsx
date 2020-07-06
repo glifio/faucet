@@ -16,7 +16,7 @@ import {
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
 import { useMessageConfirmation } from '../../lib/ConfirmMessage'
-import { getVerification } from '../../utils/storage'
+import { getVerification, removeVerificationCid } from '../../utils/storage'
 
 const Form = styled.form`
   display: flex;
@@ -54,7 +54,7 @@ export default () => {
       setConfirming(false)
     }
     const pendingVerification = getVerification()
-    if (pendingVerification.cid && !confirming) {
+    if (pendingVerification.cid && !confirming && !err) {
       confirmMsgFromStorage(
         pendingVerification.cid,
         pendingVerification.address
@@ -108,6 +108,7 @@ export default () => {
     setErr('')
     setFilAddress('')
     removeJwt('')
+    removeVerificationCid()
   }
 
   return (
