@@ -1,4 +1,4 @@
-import { Box, StyledATag, Title, Text } from './Shared'
+import { Box, Title, Text } from './Shared'
 
 const QA = ({ question, answers }) => (
   <Box m={4} maxWidth={12}>
@@ -33,32 +33,32 @@ export default () => (
       justifyContent={['center', 'center', 'space-between']}
     >
       <QA
-        question='What is a Filecoin verified client?'
+        question='What is a verified Filecoin address?'
         answers={[
-          'A verified client is anyone who is likely to be using Filecoin to store and use real data.'
+          'Anyone who is likely to be using Filecoin to store and use real data can verify their Filecoin address. Verified Filecoin addresses are kept on chain.'
         ]}
       />
       <QA
         question='What is a Filecoin verifier?'
         answers={[
-          'A verifier is someone who is charged with assessing the amount of data a verified client is likely to require, and granting them a data cap up to that amount. This app is one example of a verifier.'
+          'A verifier is someone who is charged with assessing the amount of data a verified address is likely to require, and granting that address a data cap up to that amount. This app is one example of a verifier.'
         ]}
       />
       <QA
         question='Why does it matter?'
         answers={[
-          'Data stored by verified clients makes Filecoin storage miners eligible for more block rewards. This drives miners to compete for verified client deals by improving quality of service.'
+          'Data stored by verified addresses makes Filecoin storage miners eligible for more block rewards. This drives miners to compete for verified deals by improving quality of service.'
         ]}
       />
 
       <QA
-        question='How can I get more verified data?'
+        question='How can I renew my address verification?'
         answers={[
-          'Once your Filecoin address has exhausted its verified data allowance, come back here and follow the same steps. This process can only be repeated at most once per 30 days.'
+          'Once your Filecoin address has exhausted its verified allowance, come back here and follow the same steps. This process can only be repeated at most once per 30 days.'
         ]}
       />
       <QA
-        question='How do I become a verified client?'
+        question='How do I verify my address?'
         answers={[
           "This app provides small data caps to anyone who has a GitHub account over 180 days old to make testing and experimentation easy. Simply link your GitHub account to a Filecoin address, and we'll grant that address 8 GB of verified Filecoin data.",
           'If you’re looking to store larger amounts of data on Filecoin, there are many verifiers who can grant larger data caps. A list of verifiers will be added below when it’s available.'

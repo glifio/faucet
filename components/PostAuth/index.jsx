@@ -169,7 +169,12 @@ export default () => {
                     setFilAddress(e.target.value)
                   }}
                 />
-                <Button mt={[2, 2, 0]} type='submit' title='Verify' />
+                <Button
+                  mt={[2, 2, 0]}
+                  type='submit'
+                  title='Verify'
+                  disabled={!filAddress}
+                />
               </Box>
             </Form>
           )}

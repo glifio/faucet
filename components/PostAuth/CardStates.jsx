@@ -50,7 +50,7 @@ export const Confirmed = ({ address, cid }) => {
         <Text display='inline' color='core.primary'>
           {address}
         </Text>{' '}
-        has 8 GB of verified Filecoin data.
+        has an 8GB verified Filecoin allowance.
       </Text>
       <StyledATag
         rel='noopener noreferrer'

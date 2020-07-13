@@ -15,11 +15,11 @@ class MyApp extends App {
           <title>Glif Verification</title>
           <meta
             name='description'
-            content='A Filecoin web wallet, made by Open Work Labs.'
+            content='A Filecoin verifier, made by Open Work Labs.'
           />
           <meta
             name='keywords'
-            content='Filecoin,Wallet,Web,Storage,Blockchain'
+            content='Filecoin,Data,Web,Storage,Blockchain'
           />
           <link
             rel='icon'

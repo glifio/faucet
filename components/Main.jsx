@@ -58,7 +58,11 @@ export default () => {
           alignItems='center'
           textAlign='center'
         >
-          <Title fontSize={5}>Get verified Filecoin data</Title>
+          <Title fontSize={5}>Verify your Filecoin address</Title>
+          <Text>
+            This app provides small data allowances to anyone who has a GitHub
+            account over 180 days old to make testing and experimentation easy.
+          </Text>
         </Box>
       </Box>
       <Box

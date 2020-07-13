@@ -49,6 +49,14 @@ export default () => {
     }
     setLoading(false)
   }
+
+  const calcNextAllocationTime = () => {
+    if (dayjs(mostRecentAllocation).isBefore(dayjs())) {
+      return 'now'
+    }
+    return dayjs().to(dayjs(mostRecentAllocation).add(30, 'day'))
+  }
+
   return (
     <Box
       display='flex'
@@ -59,7 +67,7 @@ export default () => {
       maxWidth={14}
     >
       <Text color='core.darkgray' textAlign='center' m='0' p='0'>
-        Enter an address to check its current verified data allowance
+        Enter an address to check its verification status
       </Text>
       <Card
         p={3}
@@ -100,6 +108,8 @@ export default () => {
                 placeholder='f1OwL...'
                 value={filAddress}
                 onChange={(e) => {
+                  setMostRecentAllocation('')
+                  setRemainingBytes(null)
                   setErr('')
                   setFilAddress(e.target.value)
                 }}
@@ -109,6 +119,7 @@ export default () => {
                 title='Check'
                 variant='secondary'
                 mt={[2, 2, 0]}
+                disabled={!filAddress}
               />
             </Box>
           </Form>
@@ -122,8 +133,8 @@ export default () => {
               storage left.
             </Text>
             <Text color='core.black'>
-              {filAddress} can reup its verified Filecoin data{' '}
-              {dayjs().to(dayjs(mostRecentAllocation).add(30, 'day'))}.
+              {filAddress} can renew its verification {calcNextAllocationTime()}
+              .
             </Text>
           </>
         )}
