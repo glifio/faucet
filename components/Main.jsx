@@ -9,7 +9,8 @@ import {
   Text,
   StyledATag,
   Menu,
-  MenuItem
+  MenuItem,
+  NodeConnectedGlyph
 } from './Shared'
 import CheckVerifiedStorageAmount from './CheckVerifiedStorageAmount'
 import { useJwt } from '../lib/JwtHandler'
@@ -45,9 +46,7 @@ export default () => {
             </Box>
           </MenuItem>
           <MenuItem>
-            <StyledATag href='#help' pb={1}>
-              Help
-            </StyledATag>
+            <NodeConnectedGlyph apiAddress={process.env.LOTUS_NODE_JSONRPC} />
           </MenuItem>
         </Menu>
         <Box
