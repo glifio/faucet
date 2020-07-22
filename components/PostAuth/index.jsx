@@ -17,6 +17,7 @@ import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
 import { useMessageConfirmation } from '../../lib/ConfirmMessage'
 import { getVerification, removeVerificationCid } from '../../utils/storage'
+import reportError from '../../utils/reportError'
 
 const Form = styled.form`
   display: flex;
@@ -50,6 +51,12 @@ export default () => {
       } catch (err) {
         setFilAddress('')
         setErr(err.message)
+        reportError(
+          'components/PostAuth/index.jsx:3',
+          false,
+          err.message,
+          err.stack
+        )
       }
       setConfirming(false)
     }
@@ -78,6 +85,13 @@ export default () => {
       setCidToConfirm(res.data.cid)
       return res.data.cid
     } catch (err) {
+      reportError(
+        'components/PostAuth/index.jsx:1',
+        false,
+        err.reponse.data.error,
+        err.message,
+        err.stack
+      )
       // throw a more readable error response from axios
       throw new Error(err.response.data.error)
     }
@@ -96,6 +110,12 @@ export default () => {
       } catch (error) {
         setErr(error.message)
         setFilAddress('')
+        reportError(
+          'components/PostAuth/index.jsx:2',
+          false,
+          err.message,
+          err.stack
+        )
       }
       setConfirming(false)
     } else {

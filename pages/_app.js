@@ -5,6 +5,7 @@ import { JwtProvider } from '../lib/JwtHandler'
 import { MessageConfirmerProvider } from '../lib/ConfirmMessage'
 import '../stylesheets/normalize.css'
 import '../stylesheets/styles.css'
+import ErrorBoundary from '../components/ErrorBoundary'
 
 class MyApp extends App {
   render() {
@@ -37,7 +38,9 @@ class MyApp extends App {
         <ThemeProvider theme={theme}>
           <MessageConfirmerProvider>
             <JwtProvider>
-              <Component {...pageProps} />
+              <ErrorBoundary>
+                <Component {...pageProps} />
+              </ErrorBoundary>
             </JwtProvider>
           </MessageConfirmerProvider>
         </ThemeProvider>

@@ -15,6 +15,7 @@ import {
   Label,
   StepHeader
 } from './Shared'
+import reportError from '../utils/reportError'
 
 dayjs.extend(relativeTime)
 
@@ -36,13 +37,30 @@ export default () => {
     const isValid = validateAddressString(filAddress)
     if (isValid) {
       setLoading(true)
-      const res = await axios.get(
-        `${process.env.VERIFIER_URL}/account-remaining-bytes/${filAddress}`
-      )
-      if (res.status !== 200) setErr(res.statusText)
-      else {
-        setRemainingBytes(res.data.remainingBytes)
-        setMostRecentAllocation(res.data.mostRecentAllocation)
+      try {
+        const res = await axios.get(
+          `${process.env.VERIFIER_URL}/account-remaining-bytes/${filAddress}`
+        )
+        if (res.status !== 200) {
+          setErr(res.statusText)
+          reportError(
+            'components/CheckVerifiedStorageAmount.jsx:1',
+            false,
+            res.statusText
+          )
+        } else {
+          setRemainingBytes(res.data.remainingBytes)
+          setMostRecentAllocation(res.data.mostRecentAllocation)
+        }
+      } catch (err) {
+        setErr(err.message)
+        reportError(
+          'components/CheckVerifiedStorageAmount.jsx:2',
+          false,
+          err.reponse.data.error,
+          err.message,
+          err.stack
+        )
       }
     } else {
       setErr('Invalid Filecoin address.')
