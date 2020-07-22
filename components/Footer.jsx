@@ -6,11 +6,12 @@ export default () => (
     display='flex'
     alignItems='center'
     justifyContent='center'
-    mb={2}
-    position='fixed'
+    py={4}
     bottom='0'
     width='100%'
     textAlign='center'
+    bg='background.screen'
+
   >
     <Text m={0}>Made by</Text>
     <StyledATag

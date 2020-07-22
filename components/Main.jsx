@@ -59,7 +59,7 @@ export default () => {
           textAlign='center'
         >
           <Title fontSize={5}>Verify your Filecoin address</Title>
-          <Text>
+          <Text maxWidth={15}>
             This app provides small data allowances to anyone who has a GitHub
             account over 180 days old to make testing and experimentation easy.
           </Text>
