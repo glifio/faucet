@@ -16,7 +16,7 @@ import {
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
 import { useMessageConfirmation } from '../../lib/ConfirmMessage'
-import { getVerification, removeVerificationCid } from '../../utils/storage'
+import { getFaucetGrant, removeFaucetGrantCid } from '../../utils/storage'
 import reportError from '../../utils/reportError'
 
 const Form = styled.form`
@@ -29,7 +29,7 @@ const Form = styled.form`
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
   if (error) return 'Oops. Please try again.'
   if (confirming) return 'Confirming...'
-  if (confirmed) return 'You have successfully verified'
+  if (confirmed) return 'You have successfully requested FIL'
   if (!confirming && !confirmed) return ''
 }
 
@@ -60,20 +60,20 @@ export default () => {
       }
       setConfirming(false)
     }
-    const pendingVerification = getVerification()
-    if (pendingVerification.cid && !confirming && !err) {
+    const pendingFaucetGrant = getFaucetGrant()
+    if (pendingFaucetGrant.cid && !confirming && !err) {
       confirmMsgFromStorage(
-        pendingVerification.cid,
-        pendingVerification.address
+        pendingFaucetGrant.cid,
+        pendingFaucetGrant.address
       )
-      setFilAddress(pendingVerification.address)
+      setFilAddress(pendingFaucetGrant.address)
     }
   }, [confirming, confirm, setConfirming, setErr])
 
-  const verify = async (jwt, filAddress) => {
+  const requestFaucetGrant = async (jwt, filAddress) => {
     try {
       const res = await axios.post(
-        `${process.env.VERIFIER_URL}/verify`,
+        `${process.env.VERIFIER_URL}/faucet/${filAddress}`,
         {
           targetAddr: filAddress
         },
@@ -81,14 +81,18 @@ export default () => {
           headers: { Authorization: `Bearer ${jwt}` }
         }
       )
-      if (res.status !== 200) throw new Error(res.data.error)
+      if (res.status !== 200) {
+          console.log('res ~>', res)
+          throw new Error(res.data.error)
+      }
       setCidToConfirm(res.data.cid)
       return res.data.cid
     } catch (err) {
+        console.log('err ~>', err)
       reportError(
         'components/PostAuth/index.jsx:1',
         false,
-        err.reponse.data.error,
+        err.response.data.error,
         err.message,
         err.stack
       )
@@ -104,8 +108,8 @@ export default () => {
     if (isValid) {
       setConfirming(true)
       try {
-        const verificationCid = await verify(jwt, filAddress)
-        await confirm(verificationCid)
+        const faucetGrantCid = await requestFaucetGrant(jwt, filAddress)
+        await confirm(faucetGrantCid)
         setConfirmed(true)
       } catch (error) {
         setErr(error.message)
@@ -128,7 +132,7 @@ export default () => {
     setErr('')
     setFilAddress('')
     removeJwt('')
-    removeVerificationCid()
+    removeFaucetGrantCid()
   }
 
   return (
@@ -137,7 +141,7 @@ export default () => {
         {!confirmed &&
           !confirming &&
           !err &&
-          'Enter an address to grant an 8GB verified data allowance'}
+          'Enter an address to request FIL'}
         {confirming && '.  .  .'}
         {confirmed && 'Niceee, transaction success!'}
         {err && 'Uh oh'}
@@ -192,7 +196,7 @@ export default () => {
                 <Button
                   mt={[2, 2, 0]}
                   type='submit'
-                  title='Verify'
+                  title='Request'
                   disabled={!filAddress}
                 />
               </Box>

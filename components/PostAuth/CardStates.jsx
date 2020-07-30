@@ -7,7 +7,7 @@ export const Confirming = ({ cid, err }) => {
   return (
     <>
       <Text>
-        We're making sure your verification gets processed by the Filecoin
+        We're making sure your FIL request gets processed by the Filecoin
         network...
       </Text>
       <Box

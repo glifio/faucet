@@ -46,7 +46,7 @@ describe('nodeConnectedWidget', () => {
     test('it renders connecting state', () => {
       const res = render(
         <ThemeProvider>
-          <NodeConnectedWidget apiAddress='https://node.glif.io/02/rpc/v0' />
+          <NodeConnectedWidget apiAddress={process.env.LOTUS_NODE_JSONRPC} />
         </ThemeProvider>
       )
       expect(res.container.firstChild).toMatchSnapshot()
@@ -60,7 +60,7 @@ describe('nodeConnectedWidget', () => {
           <ThemeProvider>
             <NodeConnectedWidget
               onConnectionStrengthChange={onChangeSpy}
-              apiAddress='https://node.glif.io/02/rpc/v0'
+              apiAddress={process.env.LOTUS_NODE_JSONRPC}
             />
           </ThemeProvider>
         )
@@ -106,7 +106,7 @@ describe('nodeConnectedWidget', () => {
           <ThemeProvider>
             <NodeConnectedWidget
               onConnectionStrengthChange={onChangeSpy}
-              apiAddress='https://node.glif.io/02/rpc/v0'
+              apiAddress={process.env.LOTUS_NODE_JSONRPC}
             />
           </ThemeProvider>
         )
@@ -183,7 +183,7 @@ describe('nodeConnectedWidget', () => {
         }
       })
 
-      const nodeURL = 'https://proxy.openworklabs.com/rpc/v0'
+      const nodeURL = process.env.LOTUS_NODE_JSONRPC
       const strength = await connectionStrength(nodeURL)
       expect(strength).toBe(1)
     })

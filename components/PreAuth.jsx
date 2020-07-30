@@ -22,8 +22,8 @@ export default () => {
           <StepHeader
             currentStep={1}
             totalSteps={3}
-            glyphAcronym='Vr'
-            title='Verify'
+            glyphAcronym='Rq'
+            title='Request'
             showStepper={false}
             width='auto'
           />

@@ -1,9 +1,9 @@
 export default {
   '@context': 'http://schema.org/',
   '@type': 'WebApplication',
-  name: 'Glif Verifier',
-  description: 'Granting verified data allowances to Filecoin addresses.',
-  url: 'https://verify.glif.io',
+  name: 'Glif Faucet',
+  description: 'Granting FIL to users for testing and development.',
+  url: 'https://faucet.glif.io',
   applicationCategory: 'Blockchain wallet',
   operatingSystem: 'All',
   knowsAbout: [

@@ -13,10 +13,10 @@ class MyApp extends App {
     return (
       <>
         <Head>
-          <title>Glif Verification</title>
+          <title>Glif Faucet</title>
           <meta
             name='description'
-            content='A Filecoin verifier, made by Open Work Labs.'
+            content='A Filecoin faucet, made by Open Work Labs.'
           />
           <meta
             name='keywords'

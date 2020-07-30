@@ -8,19 +8,19 @@ export const JwtProvider = ({ children }) => {
 
   useEffect(() => {
     if (!!window && typeof window !== 'undefined') {
-      const jwt = window.localStorage.getItem('verifier-jwt')
+      const jwt = window.localStorage.getItem('faucet-jwt')
       if (jwt) setJwt(jwt)
     }
   })
 
   const storeJwt = (jwt) => {
     setJwt(jwt)
-    window.localStorage.setItem('verifier-jwt', jwt)
+    window.localStorage.setItem('faucet-jwt', jwt)
   }
 
   const removeJwt = () => {
     setJwt('')
-    window.localStorage.removeItem('verifier-jwt')
+    window.localStorage.removeItem('faucet-jwt')
   }
 
   return (

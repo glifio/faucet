@@ -12,7 +12,7 @@ import {
   MenuItem,
   NodeConnectedGlyph
 } from './Shared'
-import CheckVerifiedStorageAmount from './CheckVerifiedStorageAmount'
+import CheckBalanceAmount from './CheckBalanceAmount'
 import { useJwt } from '../lib/JwtHandler'
 
 export default () => {
@@ -57,10 +57,10 @@ export default () => {
           alignItems='center'
           textAlign='center'
         >
-          <Title fontSize={5}>Verify your Filecoin address</Title>
+          <Title fontSize={5}>Filecoin faucet</Title>
           <Text maxWidth={15}>
-            This app provides small data allowances to anyone who has a GitHub
-            account over 180 days old to make testing and experimentation easy.
+            This app provides small amounts of free FIL to anyone who has
+            a GitHub account to make testing and experimentation easy.
           </Text>
         </Box>
       </Box>
@@ -72,7 +72,7 @@ export default () => {
         margin='auto'
       >
         {jwt ? <PostAuth /> : <PreAuth />}
-        <CheckVerifiedStorageAmount />
+        <CheckBalanceAmount />
       </Box>
     </Box>
   )

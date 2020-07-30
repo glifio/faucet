@@ -58,7 +58,8 @@ const collectHeights = async () => {
   const calls = []
 
   for (let i = 1; i <= 5; i += 1) {
-    calls.push(getHeightFromRPC(`https://node.glif.io/0${i}/rpc/v0`))
+    // calls.push(getHeightFromRPC(`https://node.glif.io/0${i}/rpc/v0`))
+    calls.push(getHeightFromRPC(process.env.LOTUS_NODE_JSONRPC))
   }
 
   calls.push(filscanHeight(), filscoutHeight())

@@ -37,7 +37,7 @@ export default class MyDocument extends Document {
           />
           <meta
             name='description'
-            content='A Filecoin web wallet, made by Open Work Labs.'
+            content='A Filecoin faucet, made by Open Work Labs.'
           />
           <meta
             name='keywords'
