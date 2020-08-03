@@ -109,6 +109,7 @@ export default () => {
                 placeholder='f1OwL...'
                 value={filAddress}
                 onChange={(e) => {
+                  setBalance(null)
                   setErr('')
                   setFilAddress(e.target.value)
                 }}
