@@ -45,19 +45,19 @@ Confirming.defaultProps = {
 export const Confirmed = ({ address, cid }) => {
   return (
     <>
-      <Text>
-        All set!{' '}
+      <Box my={3}>
+        <Text display='inline'>All set!</Text>{' '}
         <Text display='inline' color='core.primary'>
           {address}
         </Text>{' '}
-        has an 8GB verified Filecoin allowance.
-      </Text>
+        <Text display='inline'>has Filecoin.</Text>
+      </Box>
       <StyledATag
         rel='noopener noreferrer'
         target='_blank'
         href={`https://filscan.io/#/message/detail?cid=${cid}`}
       >
-        <Label color='core,primary'>View transaction on Filscan</Label>
+        <Label color='core.primary'>View transaction on Filscan</Label>
       </StyledATag>
     </>
   )

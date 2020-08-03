@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import LotusRpcEngine from '@openworklabs/lotus-jsonrpc-engine'
+import { FilecoinNumber } from '@openworklabs/filecoin-number'
 import styled from 'styled-components'
 import { validateAddressString } from '@openworklabs/filecoin-address'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
 
 import {
   Box,
@@ -17,8 +16,6 @@ import {
 } from './Shared'
 import reportError from '../utils/reportError'
 
-dayjs.extend(relativeTime)
-
 const Form = styled.form`
   display: flex;
   flex-direction: row;
@@ -31,34 +28,26 @@ export default () => {
   const [err, setErr] = useState('')
   const [loading, setLoading] = useState(false)
   const [balance, setBalance] = useState(null)
-  const [mostRecentFaucetGrant, setMostRecentFaucetGrant] = useState('')
   const onSubmit = async (e) => {
     e.preventDefault()
     const isValid = validateAddressString(filAddress)
     if (isValid) {
       setLoading(true)
       try {
-        const res = await axios.get(
-          `${process.env.VERIFIER_URL}/balance/${filAddress}`
+        const lotus = new LotusRpcEngine({
+          apiAddress: process.env.LOTUS_NODE_JSONRPC
+        })
+
+        const balance = new FilecoinNumber(
+          await lotus.request('WalletBalance', filAddress),
+          'attofil'
         )
-        if (res.status !== 200) {
-            console.log('11111111111', res)
-          setErr(res.statusText)
-          reportError(
-            'components/CheckBalanceAmount.jsx:1',
-            false,
-            res.statusText
-          )
-        } else {
-          setBalance(res.data.balance)
-          setMostRecentFaucetGrant(res.data.mostRecentFaucetGrant)
-        }
+        setBalance(balance)
       } catch (err) {
-        setErr(err.response.data.error)
+        setErr(err.message)
         reportError(
-          'components/CheckBalanceAmount.jsx:2',
+          'components/CheckBalanceAmount.jsx:1',
           false,
-          err.response.data.error,
           err.message,
           err.stack
         )
@@ -67,13 +56,6 @@ export default () => {
       setErr('Invalid Filecoin address.')
     }
     setLoading(false)
-  }
-
-  const calcNextGrantTime = () => {
-    if (dayjs(mostRecentFaucetGrant).isBefore(dayjs())) {
-      return 'now'
-    }
-    return dayjs().to(dayjs(mostRecentFaucetGrant).add(24, 'hour'))
   }
 
   return (
@@ -127,7 +109,6 @@ export default () => {
                 placeholder='f1OwL...'
                 value={filAddress}
                 onChange={(e) => {
-                  setMostRecentFaucetGrant('')
                   setErr('')
                   setFilAddress(e.target.value)
                 }}
@@ -145,15 +126,9 @@ export default () => {
       </Card>
       <Box p={3} pt={0} mx={3}>
         {balance && !err && (
-          <>
-            <Text color='core.primary'>
-              {filAddress} has {balance} FIL.
-            </Text>
-            <Text color='core.black'>
-              {filAddress} can request more FIL {calcNextGrantTime()}
-              .
-            </Text>
-          </>
+          <Text color='core.primary'>
+            {filAddress} has {balance}.
+          </Text>
         )}
         {err && (
           <Label color='status.fail.background' mt={3} mb={0}>

@@ -4,7 +4,7 @@ import CallbackRedirect from '../components/CallbackRedirect'
 import reportError from '../utils/reportError'
 
 const getJWT = async (code) => {
-  const res = await axios.post(`${process.env.VERIFIER_URL}/oauth/github`, {
+  const res = await axios.post(`${process.env.BACKEND_URL}/oauth/github`, {
     code,
     state: process.env.OAUTH_STATE_STRING
   })

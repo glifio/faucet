@@ -1,14 +1,13 @@
 const { PHASE_PRODUCTION_SERVER } = require('next/constants')
 
 module.exports = (phase) => {
-    console.log(phase)
   if (phase === PHASE_PRODUCTION_SERVER) {
     return {
       env: {
         GITHUB_CLIENT_ID: '8861de8f921b556a4a0e',
         GITHUB_REDIRECT_URL: 'https://www.faucet.glif.io/callback',
-        VERIFIER_URL: 'https://verifier.glif.io',
-        OAUTH_STATE_STRING: 'aslkdjflskjdflksjfdlj',
+        BACKEND_URL: 'https://verifier.glif.io',
+        OAUTH_STATE_STRING: 'faucet',
         LOTUS_NODE_JSONRPC: 'https://node.glif.io/02/rpc/v0',
         IS_PROD: true
       }
@@ -19,9 +18,9 @@ module.exports = (phase) => {
     env: {
       GITHUB_CLIENT_ID: '82c4ac1b64e9ef7a0efa',
       GITHUB_REDIRECT_URL: 'http://localhost:3000/callback',
-      VERIFIER_URL: 'http://localhost:8080',
-      OAUTH_STATE_STRING: 'aslkdjflskjdflksjfdlj',
-      LOTUS_NODE_JSONRPC: 'https://65a39a539fc8.ngrok.io/rpc/v0',
+      BACKEND_URL: 'http://localhost:8080',
+      OAUTH_STATE_STRING: 'faucet',
+      LOTUS_NODE_JSONRPC: 'http://localhost:1234/rpc/v0',
       IS_PROD: false
     }
   }

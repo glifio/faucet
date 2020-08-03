@@ -7,7 +7,7 @@ export default async (id, shouldSendToErrorPage, ...args) => {
     (err, ele) => {
       return `${err}\n${ele}`
     },
-    [`VERIFIER:${id}\n`]
+    [`FAUCET:${id}\n`]
   )
   errorText += '------------'
   if (process.env.IS_PROD) {

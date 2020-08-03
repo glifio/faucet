@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "@openworklabs/filecoin-address": "0.0.4",
+    "@openworklabs/filecoin-number": "0.0.9",
     "@openworklabs/lotus-jsonrpc-engine": "^0.1.2",
     "axios": "^0.19.2",
-    "dayjs": "^1.8.28",
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
