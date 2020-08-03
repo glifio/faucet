@@ -68,32 +68,20 @@ export default () => {
   }, [confirming, confirm, setConfirming, setErr])
 
   const requestFaucetGrant = async (jwt, filAddress) => {
-    try {
-      const res = await axios.post(
-        `${process.env.BACKEND_URL}/faucet/${filAddress}`,
-        {
-          targetAddr: filAddress
-        },
-        {
-          headers: { Authorization: `Bearer ${jwt}` }
-        }
-      )
-      if (res.status !== 200) {
-        throw new Error(res.data.error)
+    const res = await axios.post(
+      `${process.env.BACKEND_URL}/faucet/${filAddress}`,
+      {
+        targetAddr: filAddress
+      },
+      {
+        headers: { Authorization: `Bearer ${jwt}` }
       }
-      setCidToConfirm(res.data.cid)
-      return res.data.cid
-    } catch (err) {
-      reportError(
-        'components/PostAuth/index.jsx:1',
-        false,
-        err.response.data.error,
-        err.message,
-        err.stack
-      )
-      // throw a more readable error response from axios
-      throw new Error(err.response.data.error)
+    )
+    if (res.status !== 200) {
+      throw new Error(res.data.error)
     }
+    setCidToConfirm(res.data.cid)
+    return res.data.cid
   }
 
   const onSubmit = async (e) => {

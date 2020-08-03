@@ -127,7 +127,7 @@ export default () => {
       <Box p={3} pt={0} mx={3}>
         {balance && !err && (
           <Text color='core.primary'>
-            {filAddress} has {balance}.
+            {filAddress} has {balance.toFil()} FIL.
           </Text>
         )}
         {err && (
