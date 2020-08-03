@@ -1,11 +1,14 @@
-const { PHASE_PRODUCTION_SERVER } = require('next/constants')
+const {
+  PHASE_PRODUCTION_BUILD,
+  PHASE_PRODUCTION_SERVER
+} = require('next/constants')
 
 module.exports = (phase) => {
-  if (phase === PHASE_PRODUCTION_SERVER) {
+  if (phase === PHASE_PRODUCTION_SERVER || phase === PHASE_PRODUCTION_BUILD) {
     return {
       env: {
         GITHUB_CLIENT_ID: '8861de8f921b556a4a0e',
-        GITHUB_REDIRECT_URL: 'https://www.faucet.glif.io/callback',
+        GITHUB_REDIRECT_URL: 'https://github-oauth.glif.io/callback',
         BACKEND_URL: 'https://verifier.glif.io',
         OAUTH_STATE_STRING: 'faucet',
         LOTUS_NODE_JSONRPC: 'https://node.glif.io/02/rpc/v0',
