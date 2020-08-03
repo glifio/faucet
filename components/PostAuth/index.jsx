@@ -95,14 +95,18 @@ export default () => {
         await confirm(faucetGrantCid)
         setConfirmed(true)
       } catch (error) {
-        setErr(error.message)
+        if (error.response && error.response.status === 403) {
+          setErr(error.response.data.error)
+        } else {
+          setErr(error.message)
+          reportError(
+            'components/PostAuth/index.jsx:2',
+            false,
+            err.message,
+            err.stack
+          )
+        }
         setFilAddress('')
-        reportError(
-          'components/PostAuth/index.jsx:2',
-          false,
-          err.message,
-          err.stack
-        )
       }
       setConfirming(false)
     } else {
