@@ -59,8 +59,8 @@ export default () => {
         >
           <Title fontSize={5}>Filecoin faucet</Title>
           <Text maxWidth={15}>
-            This app provides small amounts of free FIL to anyone who has
-            a GitHub account to make testing and experimentation easy.
+            This app provides small amounts of free FIL to anyone who has a
+            GitHub account to make testing and experimentation easy.
           </Text>
         </Box>
       </Box>

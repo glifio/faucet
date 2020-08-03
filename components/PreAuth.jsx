@@ -1,4 +1,5 @@
 import React from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { Box, StepHeader, Text, Card, IconGitHub } from './Shared'
 
 export default () => {
@@ -43,7 +44,11 @@ export default () => {
               }
             `}
             onClick={() => {
-              window.location.href = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${process.env.GITHUB_REDIRECT_URL}&state=${process.env.OAUTH_STATE_STRING}`
+              window.location.href = `https://github.com/login/oauth/authorize?client_id=${
+                process.env.GITHUB_CLIENT_ID
+              }&redirect_uri=${process.env.GITHUB_REDIRECT_URL}&state=${
+                process.env.OAUTH_STATE_STRING
+              }-${uuidv4()}`
             }}
           >
             <IconGitHub size={5} ml={2} fill='white' color='white' />
