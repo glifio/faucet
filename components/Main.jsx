@@ -45,9 +45,9 @@ export default () => {
               <IconGlif width='48px' height='48px' fill='white' />
             </Box>
           </MenuItem>
-          <MenuItem>
+          {/* <MenuItem>
             <NodeConnectedGlyph apiAddress={process.env.LOTUS_NODE_JSONRPC} />
-          </MenuItem>
+          </MenuItem> */}
         </Menu>
         <Box
           display='flex'
@@ -59,7 +59,7 @@ export default () => {
         >
           <Title fontSize={5}>Filecoin faucet</Title>
           <Text maxWidth={15}>
-            This app provides small amounts of free FIL to anyone who has a
+            This app provides small amounts of testnet FIL to anyone who has a
             GitHub account to make testing and experimentation easy.
           </Text>
         </Box>

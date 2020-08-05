@@ -106,7 +106,7 @@ export default () => {
                 mt={[2, 2, 0]}
                 overflow='scroll'
                 borderRadius={2}
-                placeholder='f1OwL...'
+                placeholder='t1OwL...'
                 value={filAddress}
                 onChange={(e) => {
                   setBalance(null)
