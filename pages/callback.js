@@ -3,10 +3,10 @@ import axios from 'axios'
 import CallbackRedirect from '../components/CallbackRedirect'
 import reportError from '../utils/reportError'
 
-const getJWT = async (code) => {
+const getJWT = async (code, state) => {
   const res = await axios.post(`${process.env.BACKEND_URL}/oauth/github`, {
     code,
-    state: process.env.OAUTH_STATE_STRING
+    state
   })
   if (res.status !== 200) throw new Error(res.statusText)
   return res.data.jwt
@@ -15,7 +15,7 @@ const getJWT = async (code) => {
 export default class Callback extends Component {
   static async getInitialProps({ query, res }) {
     try {
-      const jwt = await getJWT(query.code)
+      const jwt = await getJWT(query.code, query.state)
       return { jwt, err: null }
     } catch (err) {
       if (typeof window === 'undefined') {

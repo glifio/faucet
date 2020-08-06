@@ -11,7 +11,7 @@ module.exports = (phase) => {
         GITHUB_REDIRECT_URL: 'https://github-oauth.glif.io/callback',
         BACKEND_URL: 'https://verifier.glif.io',
         OAUTH_STATE_STRING: 'faucet',
-        LOTUS_NODE_JSONRPC: 'https://dev.node.glif.io/01',
+        LOTUS_NODE_JSONRPC: 'https://dev.node.glif.io/01/rpc/v0',
         IS_PROD: true
       }
     }
