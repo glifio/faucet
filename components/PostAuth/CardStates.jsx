@@ -16,13 +16,13 @@ export const Confirming = ({ cid, err }) => {
         justifyContent='flex-start'
         width='100%'
       >
-        <StyledATag
+        {/* <StyledATag
           rel='noopener noreferrer'
           target='_blank'
           href={`https://filscan.io/#/message/detail?cid=${cid}`}
         >
           <Label color='core.primary'>View transaction on Filscan</Label>
-        </StyledATag>
+        </StyledATag> */}
         {err && (
           <Label color='status.fail.background' mt={3} mb={0}>
             {err}
