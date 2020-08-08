@@ -16,7 +16,12 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    reportError('ErrorBoundary.jsx:1', false, error, errorInfo)
+    reportError(
+      'ErrorBoundary.jsx:1',
+      false,
+      error,
+      JSON.stringify(errorInfo, null, 2)
+    )
   }
 
   render() {

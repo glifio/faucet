@@ -102,8 +102,8 @@ export default () => {
           reportError(
             'components/PostAuth/index.jsx:2',
             false,
-            err.message,
-            err.stack
+            error.message,
+            error.stack
           )
         }
         setFilAddress('')
