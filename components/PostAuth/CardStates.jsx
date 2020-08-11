@@ -8,7 +8,7 @@ export const Confirming = ({ cid, err }) => {
     <>
       <Text>
         We're making sure your FIL request gets processed by the Filecoin
-        network. This might take 2-3 minutes.
+        network. This might take up to 5 minutes.
       </Text>
       <Box
         display='flex'
