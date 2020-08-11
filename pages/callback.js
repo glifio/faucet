@@ -22,7 +22,7 @@ export default class Callback extends Component {
         // we redirect the error in the catch statement,
         // since reportError can only make client side transitions
         reportError('pages/callback.js:1', false, err.message, err.stack)
-        res.writeHead(301, { Location: '/error' })
+        res.writeHead(307, { Location: '/error' })
         res.end()
       } else {
         reportError('pages/callback.js:1', true, err.message, err.stack)
