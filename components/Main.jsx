@@ -4,23 +4,29 @@ import PostAuth from './PostAuth'
 import {
   Box,
   Card,
-  IconGlif,
   Title,
   Text,
   StyledATag,
   Menu,
   MenuItem,
-  NodeConnectedGlyph
+  Header,
+  NodeConnectedGlyph,
 } from './Shared'
 import CheckBalanceAmount from './CheckBalanceAmount'
 import { useJwt } from '../lib/JwtHandler'
+import ErrorGlyph from './Shared/Glyph/ErrorGlyph'
+import HeaderGlyph from './Shared/Glyph/HeaderGlyph'
+
+
 
 export default () => {
   const { jwt } = useJwt()
   return (
-    <Box p={[2, 3, 5]} mb={[0, 4]}>
+    <Box display="flex" flexWrap="wrap" alignItems="center" height="100%" p={[2, 3, 5]} mb={[0, 4]}>
       <Box
         display='flex'
+        width="40%"
+        minWidth={12}
         flexDirection='column'
         alignItems='flex-start'
         alignContent='center'
@@ -33,17 +39,11 @@ export default () => {
           alignItems='center'
         >
           <MenuItem>
-            <Box
-              display='flex'
-              justifyContent='center'
-              alignItems='center'
-              borderRadius={3}
-              bg='core.primary'
-              borderRadius={3}
-              height={7}
-            >
-              <IconGlif width='48px' height='48px' fill='white' />
-            </Box>
+            <HeaderGlyph 
+            alt='Source: https://unsplash.com/photos/g2Zf3hJyYAc'
+            text='Faucet'
+            imageUrl='/imgfaucet.jpg'
+            />
           </MenuItem>
           {/* <MenuItem>
             <NodeConnectedGlyph apiAddress={process.env.LOTUS_NODE_JSONRPC} />
@@ -54,18 +54,18 @@ export default () => {
           flexDirection='column'
           mt={4}
           alignSelf='center'
-          alignItems='center'
-          textAlign='center'
+          textAlign='left'
         >
-          <Title fontSize={5}>Filecoin faucet</Title>
-          <Text maxWidth={15}>
-            This app provides small amounts of testnet FIL to anyone who has a
-            GitHub account to make testing and experimentation easy.
-          </Text>
+          <Header>Quickly, easily receive testnet Filecoin</Header>
+          <Title mt={3} lineHeight='140%'>
+            Receive small amounts of testnet FIL to help your testing and experimentation.
+          </Title>
+          
         </Box>
       </Box>
       <Box
         display='flex'
+        width="50%"
         flexWrap='wrap'
         justifyContent='space-evenly'
         maxWidth={19}
