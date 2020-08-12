@@ -88,6 +88,11 @@ export default () => {
     e.preventDefault()
     setErr('')
     const isValid = validateAddressString(filAddress)
+    const isActorAddress = filAddress[1] === '2'
+    if (isActorAddress) {
+      setErr("Please use this actor's ID address (t0)")
+      return
+    }
     if (isValid) {
       setConfirming(true)
       try {

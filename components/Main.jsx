@@ -61,6 +61,13 @@ export default () => {
           <Text maxWidth={15}>
             This app provides small amounts of testnet FIL to anyone who has a
             GitHub account to make testing and experimentation easy.
+            <br />
+            <br />
+            Non-miners can only use this faucet once.
+            <br />
+            <br />
+            Miners with more power will receive more testnet FIL from this
+            faucet.
           </Text>
         </Box>
       </Box>
