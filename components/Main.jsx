@@ -66,9 +66,9 @@ export default () => {
       <Box
         display='flex'
         width="50%"
+        minHeight={12}
         flexWrap='wrap'
         justifyContent='space-evenly'
-        maxWidth={19}
         margin='auto'
       >
         {jwt ? <PostAuth /> : <PreAuth />}
