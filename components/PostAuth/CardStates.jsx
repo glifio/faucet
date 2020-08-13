@@ -7,8 +7,7 @@ export const Confirming = ({ cid, err }) => {
   return (
     <>
       <Text>
-        We're making sure your FIL request gets processed by the Filecoin
-        network...
+        Your request is being processed by the Filecoin network
       </Text>
       <Box
         display='flex'
@@ -45,20 +44,22 @@ Confirming.defaultProps = {
 export const Confirmed = ({ address, cid }) => {
   return (
     <>
-      <Box my={3}>
-        <Text display='inline'>All set!</Text>{' '}
-        <Text display='inline' color='core.primary'>
-          {address}
+      <Box display="flex" alignItems="center" justifyContent="center" my={3}>
+        <Text display='inline' my={0} mx={2}>
+          {address} has Filecoin
         </Text>{' '}
-        <Text display='inline'>has Filecoin.</Text>
-      </Box>
+        {/* <Text display='inline' m={0}>has Filecoin.</Text> */}
+      
       <StyledATag
+        display="inline"
         rel='noopener noreferrer'
         target='_blank'
+        border='none'
         href={`https://filscan.io/#/message/detail?cid=${cid}`}
       >
-        <Label color='core.primary'>View transaction on Filscan</Label>
+        <Label color='core.primary'>VIEW</Label>
       </StyledATag>
+      </Box>
     </>
   )
 }
