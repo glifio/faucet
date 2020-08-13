@@ -38,6 +38,7 @@ export default () => {
   const [confirming, setConfirming] = useState(false)
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
+  const [sentAddress, setSentAddress] = useState('')
   const [err, setErr] = useState('')
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
@@ -81,7 +82,10 @@ export default () => {
       throw new Error(res.data.error)
     }
     setCidToConfirm(res.data.cid)
-    return res.data.cid
+    return {
+      faucetGrantCid: res.data.cid,
+      faucetGrantAddress: res.data.toAddress
+    }
   }
 
   const onSubmit = async (e) => {
@@ -96,8 +100,12 @@ export default () => {
     if (isValid) {
       setConfirming(true)
       try {
-        const faucetGrantCid = await requestFaucetGrant(jwt, filAddress)
+        const { faucetGrantCid, faucetGrantAddress } = await requestFaucetGrant(
+          jwt,
+          filAddress
+        )
         await confirm(faucetGrantCid)
+        setSentAddress(faucetGrantAddress)
         setConfirmed(true)
       } catch (error) {
         if (error.response && error.response.status === 403) {
@@ -202,7 +210,7 @@ export default () => {
       <Box p={3} pt={0} mx={3}>
         {confirming && <Confirming cid={cidToConfirm} err={err} />}
         {!confirming && confirmed && (
-          <Confirmed address={filAddress} cid={cidToConfirm} />
+          <Confirmed address={sentAddress} cid={cidToConfirm} />
         )}
         {err && (
           <Label color='status.fail.background' mt={3} mb={0}>
