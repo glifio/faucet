@@ -63,49 +63,42 @@ export default () => {
       display='flex'
       flexDirection='column'
       m={3}
-      mt={[4, 6]}
+      mt={4}
       width='100%'
-      maxWidth={14}
+      minHeight={10}
+      alignItems="center"
     >
-      <Text color='core.darkgray' textAlign='center' m='0' p='0'>
+      <Text color='core.darkgray'  p='0'>
         Enter an address to check its FIL balance
       </Text>
       <Card
-        p={3}
-        mt={3}
+        p={0}
         border={0}
+        width="100%"
+        maxWidth={13}
+        height={7}
         display='flex'
         flexDirection='column'
         justifyContent='space-between'
-        bg='background.screen'
         boxShadow={2}
+        
       >
         <Box
           display='flex'
           flexDirection='row'
           justifyContent='space-between'
           flexWrap='wrap'
+          bg='input.background.base'
         >
-          <StepHeader
-            glyphAcronym='Ck'
-            showStepper={false}
-            title=''
-            loading={loading}
-            width='auto'
-          />
+          
           <Form onSubmit={onSubmit}>
-            <Box display='flex' flexGrow='1' flexWrap='wrap'>
+            <Box display='flex' flexGrow='1' flexWrap='wrap' alignItems="center">
               <InputLabelBase display='none' htmlFor='check-fil-address' />
               <Input.Base
                 id='check-fil-address'
                 width='auto'
                 flexShrink='1'
-                height={7}
-                minWidth={11}
-                mr={2}
-                mt={[2, 2, 0]}
                 overflow='scroll'
-                borderRadius={2}
                 placeholder='t1OwL...'
                 value={filAddress}
                 onChange={(e) => {
@@ -118,7 +111,8 @@ export default () => {
                 type='submit'
                 title='Check'
                 variant='secondary'
-                mt={[2, 2, 0]}
+                mx={2}
+                px={4}
                 disabled={!filAddress}
               />
             </Box>
