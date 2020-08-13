@@ -10,7 +10,6 @@ export default () => (
     bottom='0'
     width='100%'
     textAlign='center'
-    bg='background.screen'
 
   >
     <Text m={0}>Made by</Text>
