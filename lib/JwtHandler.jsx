@@ -9,22 +9,29 @@ export const JwtProvider = ({ children }) => {
   useEffect(() => {
     if (!!window && typeof window !== 'undefined') {
       // remove previous JWT from last version
-      window.localStorage.removeItem('faucet-jwt')
+      window.localStorage.removeItem('faucet-jwt:2')
 
       // we had some breaking changes, so we're using a diff jwt
-      const jwt = window.localStorage.getItem(`faucet-jwt:2`)
+      const jwt = window.localStorage.getItem(
+        `faucet-jwt:${process.env.NETWORK_IDENTIFIER}`
+      )
       if (jwt) setJwt(jwt)
     }
   })
 
   const storeJwt = (jwt) => {
     setJwt(jwt)
-    window.localStorage.setItem(`faucet-jwt:2`, jwt)
+    window.localStorage.setItem(
+      `faucet-jwt:${process.env.NETWORK_IDENTIFIER}`,
+      jwt
+    )
   }
 
   const removeJwt = () => {
     setJwt('')
-    window.localStorage.removeItem(`faucet-jwt:2`)
+    window.localStorage.removeItem(
+      `faucet-jwt:${process.env.NETWORK_IDENTIFIER}`
+    )
   }
 
   return (
