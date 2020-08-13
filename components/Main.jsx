@@ -23,6 +23,7 @@ export default () => {
       display='flex'
       flexWrap='wrap'
       alignItems='center'
+      justifyContent='center'
       height='100%'
       p={[2, 3, 5]}
       mb={[0, 4]}
