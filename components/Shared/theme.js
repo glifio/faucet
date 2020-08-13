@@ -143,7 +143,7 @@ const theme = {
   },
   textStyles: {
     header: {
-      fontSize: 'calc(48px + (64 - 40) * (100vw - 360px) / (1440 - 360))',
+      fontSize: 'calc(48px + (48 - 32) * (100vw - 360px) / (1440 - 360))',
       fontWeight: 400,
       margin: 0,
       lineHeight: 'solid',
@@ -174,7 +174,7 @@ const theme = {
       fontSize: 2,
       fontColor: core.darkgray,
       fontWeight: 400,
-      lineHeight: 'solid',
+      lineHeight: 'copy',
       fontFamily: 'RT-Alias-Grotesk'
     },
     num: {
