@@ -39,7 +39,6 @@ export const Confirmed = ({ address, cid }) => {
         <Text display='inline' my={0} mx={2}>
           {address} has Filecoin
         </Text>{' '}
-        {/* <Text display='inline' m={0}>has Filecoin.</Text> */}
         <StyledATag
           display='inline'
           rel='noopener noreferrer'

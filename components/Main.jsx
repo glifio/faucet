@@ -1,16 +1,7 @@
 import React from 'react'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
-import {
-  Box,
-  Title,
-  Text,
-  StyledATag,
-  Menu,
-  MenuItem,
-  Header,
-  NodeConnectedGlyph
-} from './Shared'
+import { Box, Title, Menu, MenuItem, Header } from './Shared'
 import CheckBalanceAmount from './CheckBalanceAmount'
 import { useJwt } from '../lib/JwtHandler'
 import ErrorGlyph from './Shared/Glyph/ErrorGlyph'
