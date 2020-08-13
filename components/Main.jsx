@@ -3,29 +3,33 @@ import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
 import {
   Box,
-  Card,
   Title,
   Text,
   StyledATag,
   Menu,
   MenuItem,
   Header,
-  NodeConnectedGlyph,
+  NodeConnectedGlyph
 } from './Shared'
 import CheckBalanceAmount from './CheckBalanceAmount'
 import { useJwt } from '../lib/JwtHandler'
 import ErrorGlyph from './Shared/Glyph/ErrorGlyph'
 import HeaderGlyph from './Shared/Glyph/HeaderGlyph'
 
-
-
 export default () => {
   const { jwt } = useJwt()
   return (
-    <Box display="flex" flexWrap="wrap" alignItems="center" height="100%" p={[2, 3, 5]} mb={[0, 4]}>
+    <Box
+      display='flex'
+      flexWrap='wrap'
+      alignItems='center'
+      height='100%'
+      p={[2, 3, 5]}
+      mb={[0, 4]}
+    >
       <Box
         display='flex'
-        width="40%"
+        width='40%'
         minWidth={12}
         flexDirection='column'
         alignItems='flex-start'
@@ -39,10 +43,10 @@ export default () => {
           alignItems='center'
         >
           <MenuItem>
-            <HeaderGlyph 
-            alt='Source: https://unsplash.com/photos/g2Zf3hJyYAc'
-            text='Faucet'
-            imageUrl='/imgfaucet.jpg'
+            <HeaderGlyph
+              alt='Source: https://unsplash.com/photos/g2Zf3hJyYAc'
+              text='Faucet'
+              imageUrl='/imgfaucet.jpg'
             />
           </MenuItem>
           {/* <MenuItem>
@@ -58,14 +62,14 @@ export default () => {
         >
           <Header>Quickly, easily receive testnet Filecoin</Header>
           <Title mt={3} lineHeight='140%'>
-            Receive small amounts of testnet FIL to help your testing and experimentation.
+            Receive small amounts of testnet FIL to help your testing and
+            experimentation.
           </Title>
-          
         </Box>
       </Box>
       <Box
         display='flex'
-        width="50%"
+        width='50%'
         minHeight={12}
         flexWrap='wrap'
         justifyContent='space-evenly'

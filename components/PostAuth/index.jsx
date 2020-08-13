@@ -38,7 +38,8 @@ export default () => {
   const [confirming, setConfirming] = useState(false)
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
-  const [err, setErr] = useState(true)
+  const [sentAddress, setSentAddress] = useState('')
+  const [err, setErr] = useState('')
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
 
@@ -81,18 +82,30 @@ export default () => {
       throw new Error(res.data.error)
     }
     setCidToConfirm(res.data.cid)
-    return res.data.cid
+    return {
+      faucetGrantCid: res.data.cid,
+      faucetGrantAddress: res.data.toAddress
+    }
   }
 
   const onSubmit = async (e) => {
     e.preventDefault()
     setErr('')
     const isValid = validateAddressString(filAddress)
+    const isActorAddress = filAddress[1] === '2'
+    if (isActorAddress) {
+      setErr("Please use this actor's ID address (t0)")
+      return
+    }
     if (isValid) {
       setConfirming(true)
       try {
-        const faucetGrantCid = await requestFaucetGrant(jwt, filAddress)
+        const { faucetGrantCid, faucetGrantAddress } = await requestFaucetGrant(
+          jwt,
+          filAddress
+        )
         await confirm(faucetGrantCid)
+        setSentAddress(faucetGrantAddress)
         setConfirmed(true)
       } catch (error) {
         if (error.response && error.response.status === 403) {
@@ -132,67 +145,85 @@ export default () => {
   }
 
   return (
-    <Box display='flex' flexDirection='column' m={3} width='100%' maxWidth={14} alignItems="center">
+    <Box
+      display='flex'
+      flexDirection='column'
+      m={3}
+      width='100%'
+      maxWidth={14}
+      alignItems='center'
+    >
       <Text color='core.darkgray' textAlign='center' p='0'>
         Enter an address to request FIL
       </Text>
       <Card
         p={0}
         border={0}
-        width="100%"
+        width='100%'
         maxWidth={13}
         height={7}
         display='flex'
         flexDirection='column'
         justifyContent='space-between'
-        bg={err ? 'status.fail.background' : (confirmed ? 'status.success.background' : 'input.background.base')}
-
-
+        bg={
+          err
+            ? 'status.fail.background'
+            : confirmed
+            ? 'status.success.background'
+            : 'input.background.base'
+        }
         boxShadow={2}
       >
-          {!confirming && !confirmed && !err && (
-            <Form onSubmit={onSubmit}>
-              <Box display='flex' flexGrow='1' flexWrap='wrap' alignItems="center">
-                <InputLabelBase display='none' htmlFor='fil-address' />
-                <Input.Base
-                  id='fil-address'
-                  width='auto'
-                  flexShrink='1'
-                  overflow='scroll'
-                  placeholder='t1OwL...'
-                  value={filAddress}
-                  onChange={(e) => {
-                    setErr('')
-                    setFilAddress(e.target.value)
-                  }}
-                />
-                <Button
-                  mx={2}
-                  type='submit'
-                  title='Request'
-                  disabled={!filAddress}
-                />
-              </Box>
-            </Form>
-          )}
-           <Box
+        {!confirming && !confirmed && !err && (
+          <Form onSubmit={onSubmit}>
+            <Box
+              display='flex'
+              flexGrow='1'
+              flexWrap='wrap'
+              alignItems='center'
+            >
+              <InputLabelBase display='none' htmlFor='fil-address' />
+              <Input.Base
+                id='fil-address'
+                width='auto'
+                flexShrink='1'
+                overflow='scroll'
+                placeholder='t1OwL...'
+                value={filAddress}
+                onChange={(e) => {
+                  setErr('')
+                  setFilAddress(e.target.value)
+                }}
+              />
+              <Button
+                mx={2}
+                type='submit'
+                title='Request'
+                disabled={!filAddress}
+              />
+            </Box>
+          </Form>
+        )}
+        <Box
           display='flex'
           flexDirection='row'
           justifyContent='space-between'
-          alignItems="center"
+          alignItems='center'
           flexWrap='wrap'
-          height='100%' 
+          height='100%'
         >
           <Text m={0} px={4}>
             {StepHeaderTitle({ confirmed, confirming, error: err })}
           </Text>
-          {err && <Button mx={2} variant='secondary' title='Retry' onClick={reset} />}
-          </Box>
+          {err && (
+            <Button mx={2} variant='secondary' title='Retry' onClick={reset} />
+          )}
+        </Box>
       </Card>
-      <Box pt={0} mx={3} textAlign="center">
+      <Box pt={0} mx={3} textAlign='center'>
         {confirming && <Confirming cid={cidToConfirm} err={err} />}
         {!confirming && confirmed && (
-          <Confirmed address={filAddress} cid={cidToConfirm} />
+          <Confirmed address={sentAddress} cid={cidToConfirm} />
         )}
         {err && (
           <Label color='status.fail.background' mt={3} mb={0}>
