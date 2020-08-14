@@ -36,7 +36,7 @@ export const Confirmed = ({ address, cid }) => {
     <>
       <Box display='flex' alignItems='center' justifyContent='center' my={3}>
         <Text display='inline' my={0} mx={2}>
-          {address} has Filecoin
+          Filecoin sent to {address}
         </Text>{' '}
         <StyledATag
           display='inline'
