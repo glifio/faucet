@@ -29,7 +29,7 @@ export default () => {
     >
       <Box
         display='flex'
-        width={['100%', '100%', '40%']}
+        width={['100%', '100%', '45%', '40%']}
         flexDirection='column'
         alignItems='flex-start'
         alignContent='center'
