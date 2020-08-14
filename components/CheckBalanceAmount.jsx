@@ -135,6 +135,7 @@ export default () => {
                 mx={2}
                 px={4}
                 disabled={!filAddress}
+                bg='transparent'
               />
             </Box>
           </Form>
