@@ -13,6 +13,7 @@ import {
   Label,
   Card
 } from '../Shared'
+import Loading from '../Shared/LoaderGlyph'
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
 import { useMessageConfirmation } from '../../lib/ConfirmMessage'
@@ -43,7 +44,7 @@ const StepHeaderTitle = ({ confirming, confirmed, error }) => {
 
 export default () => {
   const [filAddress, setFilAddress] = useState('')
-  const [confirming, setConfirming] = useState(false)
+  const [confirming, setConfirming] = useState(true)
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
   const [sentAddress, setSentAddress] = useState('')
@@ -253,6 +254,11 @@ export default () => {
           >
             {StepHeaderTitle({ confirmed, confirming, error: err })}
           </Text>
+          {confirming && (
+            <Box mr={2}>
+              <Loading />
+            </Box>
+          )}
           {confirmed && (
             <Button mx={2} variant='secondary' title='Return' onClick={back} />
           )}
