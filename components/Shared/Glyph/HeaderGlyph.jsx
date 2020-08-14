@@ -1,12 +1,9 @@
 import React from 'react'
 import { string } from 'prop-types'
 import { MenuItem } from '../Menu'
-import  Box  from '../Box'
-import { IconGlif }  from '../Icons'
+import Box from '../Box'
+import { IconGlif } from '../Icons'
 import { Header } from '../Typography'
-
-
-
 
 Box, IconGlif, Header
 
@@ -33,7 +30,7 @@ const HeaderGlyph = ({ alt, color, text, imageUrl }) => {
       >
         <IconGlif
           fill='#fff'
-          size={[6, 7, 8]}
+          size={7}
           css={`
             transform: rotate(-90deg);
           `}
