@@ -2,14 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
-import { Box, Title, Header, Label, Text } from './Shared'
+import { Box, Title, Header, Label } from './Shared'
 import CheckBalanceAmount from './CheckBalanceAmount'
 import { useJwt } from '../lib/JwtHandler'
 import ErrorGlyph from './Shared/Glyph/ErrorGlyph'
 import HeaderGlyph from './Shared/Glyph/HeaderGlyph'
 
 const Highlight = styled.span`
-  font-size: ${(props) => props.theme.fontSizes[3]};
+  font-size: ${(props) => props.theme.fontSizes[2]};
   border-radius: ${(props) => props.theme.radii[6]};
   padding: 0rem 1rem;
   margin-right: 0.5rem;
@@ -54,15 +54,15 @@ export default () => {
             Receive small amounts of testnet FIL to help your testing and
             experimentation.
           </Title>
-          <Box mt={[2, 3, 4, 7]} maxWidth={12}>
-            <Text color='core.darkgray' textAlign='left' mt={3}>
+          <Box mt={[2, 3, 4, 6]} maxWidth={12}>
+            <Label color='core.darkgray' textAlign='left' mt={3}>
               <Highlight>Miners</Highlight>
               You can reuse this faucet by entering in your miner ID
-            </Text>
-            <Text color='core.darkgray' textAlign='left' mt={3}>
+            </Label>
+            <Label color='core.darkgray' textAlign='left' mt={3}>
               <Highlight>Not a miner?</Highlight>
               t1 and t3 addresses can only use this faucet once
-            </Text>
+            </Label>
           </Box>
         </Box>
         <Title
