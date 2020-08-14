@@ -63,25 +63,42 @@ export default () => {
       display='flex'
       flexDirection='column'
       m={3}
-      mt={4}
-      width='100%'
       minHeight={10}
-      alignItems="center"
+      width='100%'
+      maxWidth={13}
+      alignItems='center'
+      justifyContent='center'
     >
-      <Text color='core.darkgray'  p='0'>
-        Enter an address to check its FIL balance
-      </Text>
+      <Box
+        display='flex'
+        width='100%'
+        justifyContent='space-between'
+        flexWrap='wrap'
+        mb={3}
+      >
+        <Text
+          color='core.nearblack'
+          textAlign='center'
+          p='0'
+          m={0}
+          textTransform='uppercase'
+        >
+          CHECK
+        </Text>
+        <Text color='core.darkgray' textAlign='left' p='0' m={0}>
+          Enter an address to check its balance
+        </Text>
+      </Box>
       <Card
         p={0}
         border={0}
-        width="100%"
+        width='100%'
         maxWidth={13}
         height={7}
         display='flex'
         flexDirection='column'
         justifyContent='space-between'
         boxShadow={2}
-        
       >
         <Box
           display='flex'
@@ -90,9 +107,13 @@ export default () => {
           flexWrap='wrap'
           bg='input.background.base'
         >
-          
           <Form onSubmit={onSubmit}>
-            <Box display='flex' flexGrow='1' flexWrap='wrap' alignItems="center">
+            <Box
+              display='flex'
+              flexGrow='1'
+              flexWrap='wrap'
+              alignItems='center'
+            >
               <InputLabelBase display='none' htmlFor='check-fil-address' />
               <Input.Base
                 id='check-fil-address'
