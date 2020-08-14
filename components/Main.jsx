@@ -15,7 +15,7 @@ export default () => {
       flexWrap='wrap'
       alignItems='center'
       justifyContent='center'
-      height='100%'
+      flexGrow='1'
       p={[2, 3, 5]}
     >
       <Box
@@ -24,6 +24,7 @@ export default () => {
         flexDirection='column'
         alignItems='flex-start'
         alignContent='center'
+        mx={3}
         mb={4}
       >
         <HeaderGlyph
@@ -49,7 +50,6 @@ export default () => {
       <Box
         display='flex'
         // flexGrow='1'
-        minHeight={12}
         width={['100%', '100%', '50%']}
         minWidth={11}
         flexWrap='wrap'
