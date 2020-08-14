@@ -35,7 +35,7 @@ const Highlight = styled.span`
 `
 
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
-  if (error) return 'Oops. Try again'
+  if (error) return 'Oops. Try again.'
   if (confirming) return 'Confirming...'
   if (confirmed) return 'Success!'
   if (!confirming && !confirmed) return ''
@@ -191,6 +191,7 @@ export default () => {
         display='flex'
         flexDirection='column'
         justifyContent='space-between'
+        boxShadow={2}
         bg={
           err
             ? 'status.fail.background'
@@ -198,11 +199,11 @@ export default () => {
             ? 'status.success.background'
             : 'input.background.base'
         }
-        boxShadow={2}
       >
         {!confirming && !confirmed && !err && (
           <Form onSubmit={onSubmit}>
             <Box
+              position='relative'
               display='flex'
               flexGrow='1'
               flexWrap='wrap'
@@ -211,8 +212,8 @@ export default () => {
               <InputLabelBase display='none' htmlFor='fil-address' />
               <Input.Base
                 id='fil-address'
-                width='auto'
-                flexShrink='1'
+                width='100%'
+                pr={8}
                 overflow='scroll'
                 placeholder='t1OwL...'
                 value={filAddress}
@@ -226,6 +227,10 @@ export default () => {
                 type='submit'
                 title='Request'
                 disabled={!filAddress}
+                css={`
+                  position: absolute;
+                  right: 0;
+                `}
               />
             </Box>
           </Form>
