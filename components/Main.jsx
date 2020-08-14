@@ -1,11 +1,20 @@
 import React from 'react'
+import styled from 'styled-components'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
-import { Box, Title, Header, Label } from './Shared'
+import { Box, Title, Header, Label, Text } from './Shared'
 import CheckBalanceAmount from './CheckBalanceAmount'
 import { useJwt } from '../lib/JwtHandler'
 import ErrorGlyph from './Shared/Glyph/ErrorGlyph'
 import HeaderGlyph from './Shared/Glyph/HeaderGlyph'
+
+const Highlight = styled.span`
+  font-size: ${(props) => props.theme.fontSizes[3]};
+  border-radius: ${(props) => props.theme.radii[6]};
+  padding: 0rem 1rem;
+  margin-right: 0.5rem;
+  background-color: #ffc0cb;
+`
 
 export default () => {
   const { jwt } = useJwt()
@@ -45,15 +54,28 @@ export default () => {
             Receive small amounts of testnet FIL to help your testing and
             experimentation.
           </Title>
-          <Label mt={4}>
-            Miners can reuse this faucet by entering in their miner ID when they
-            need more FIL.
-          </Label>
-          <Label mt={4} p={4} borderRadius={3} bg='lightgray'>
-            The amount of FIL a miner receives depends on how much power they
-            hold in the network
-          </Label>
+          <Box mt={[2, 3, 4, 7]} maxWidth={12}>
+            <Text color='core.darkgray' textAlign='left' mt={3}>
+              <Highlight>Miners</Highlight>
+              You can reuse this faucet by entering in your miner ID
+            </Text>
+            <Text color='core.darkgray' textAlign='left' mt={3}>
+              <Highlight>Not a miner?</Highlight>
+              t1 and t3 addresses can only use this faucet once
+            </Text>
+          </Box>
         </Box>
+        <Title
+          display={['inline-block', 'inline-block', 'none']}
+          width='100%'
+          textAlign='center'
+          fontSize={6}
+          css={`
+            font-family: 'system-ui';
+          `}
+        >
+          ↓
+        </Title>
       </Box>
       <Box
         display='flex'
