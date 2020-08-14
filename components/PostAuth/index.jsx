@@ -27,9 +27,9 @@ const Form = styled.form`
 `
 
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
-  if (error) return 'Oops. Please try again.'
+  if (error) return 'Oops. Try again'
   if (confirming) return 'Confirming...'
-  if (confirmed) return 'You have successfully received FIL'
+  if (confirmed) return 'Success!'
   if (!confirming && !confirmed) return ''
 }
 
@@ -39,7 +39,7 @@ export default () => {
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
   const [sentAddress, setSentAddress] = useState('')
-  const [err, setErr] = useState('')
+  const [err, setErr] = useState(true)
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
 
@@ -153,17 +153,27 @@ export default () => {
   }
 
   return (
-    <Box
-      display='flex'
-      flexDirection='column'
-      m={3}
-      width='100%'
-      maxWidth={14}
-      alignItems='center'
-    >
-      <Text color='core.darkgray' textAlign='center' p='0'>
-        Enter an address to request FIL
-      </Text>
+    <>
+      <Box
+        display='flex'
+        width='100%'
+        justifyContent='space-between'
+        flexWrap='wrap'
+        mb={3}
+      >
+        <Text
+          color='core.nearblack'
+          textAlign='center'
+          p='0'
+          m={0}
+          textTransform='uppercase'
+        >
+          REQUEST
+        </Text>
+        <Text color='core.darkgray' textAlign='left' p='0' m={0}>
+          Enter an address to request FIL
+        </Text>
+      </Box>
       <Card
         p={0}
         border={0}
@@ -220,11 +230,18 @@ export default () => {
           flexWrap='wrap'
           height='100%'
         >
-          <Text m={0} px={4}>
+          <Text
+            m={0}
+            px={4}
+            maxWidth={10}
+            whiteSpace='nowrap'
+            textOverflow='ellipsis'
+            overflow='hidden'
+          >
             {StepHeaderTitle({ confirmed, confirming, error: err })}
           </Text>
           {confirmed && (
-            <Button mx={2} variant='secondary' title='Back' onClick={back} />
+            <Button mx={2} variant='secondary' title='Return' onClick={back} />
           )}
           {err && (
             <Button mx={2} variant='secondary' title='Retry' onClick={reset} />
@@ -236,12 +253,11 @@ export default () => {
         {!confirming && confirmed && (
           <Confirmed address={sentAddress} cid={cidToConfirm} />
         )}
-        {err && (
-          <Label color='status.fail.background' mt={3} mb={0}>
-            {err}
-          </Label>
-        )}
+
+        <Label color='status.fail.background' mt={3} mb={0}>
+          {err}
+        </Label>
       </Box>
-    </Box>
+    </>
   )
 }

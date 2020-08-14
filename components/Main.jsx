@@ -1,7 +1,7 @@
 import React from 'react'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
-import { Box, Title, Menu, MenuItem, Header } from './Shared'
+import { Box, Title, Header, Label } from './Shared'
 import CheckBalanceAmount from './CheckBalanceAmount'
 import { useJwt } from '../lib/JwtHandler'
 import ErrorGlyph from './Shared/Glyph/ErrorGlyph'
@@ -36,7 +36,7 @@ export default () => {
         <Box
           display='flex'
           flexDirection='column'
-          mt={4}
+          mt={[2, 4, 4]}
           alignSelf='center'
           textAlign='left'
         >
@@ -45,6 +45,14 @@ export default () => {
             Receive small amounts of testnet FIL to help your testing and
             experimentation.
           </Title>
+          <Label mt={4}>
+            Miners can reuse this faucet by entering in their miner ID when they
+            need more FIL.
+          </Label>
+          <Label mt={4} p={4} borderRadius={3} bg='lightgray'>
+            The amount of FIL a miner receives depends on how much power they
+            hold in the network
+          </Label>
         </Box>
       </Box>
       <Box
@@ -56,7 +64,18 @@ export default () => {
         justifyContent='space-evenly'
         margin='auto'
       >
-        {jwt ? <PostAuth /> : <PreAuth />}
+        <Box
+          display='flex'
+          flexDirection='column'
+          m={3}
+          minHeight={10}
+          width='100%'
+          maxWidth={13}
+          alignItems='center'
+          justifyContent='center'
+        >
+          {jwt ? <PostAuth /> : <PreAuth />}
+        </Box>
         <CheckBalanceAmount />
       </Box>
     </Box>
