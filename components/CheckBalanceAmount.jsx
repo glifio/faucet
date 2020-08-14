@@ -105,10 +105,11 @@ export default () => {
           flexDirection='row'
           justifyContent='space-between'
           flexWrap='wrap'
-          bg='input.background.base'
+          // bg='input.background.base'
         >
           <Form onSubmit={onSubmit}>
             <Box
+              position='relative'
               display='flex'
               flexGrow='1'
               flexWrap='wrap'
@@ -117,8 +118,9 @@ export default () => {
               <InputLabelBase display='none' htmlFor='check-fil-address' />
               <Input.Base
                 id='check-fil-address'
-                width='auto'
+                width='100%'
                 flexShrink='1'
+                pr={8}
                 overflow='scroll'
                 placeholder='t1OwL...'
                 value={filAddress}
@@ -136,6 +138,10 @@ export default () => {
                 px={4}
                 disabled={!filAddress}
                 bg='transparent'
+                css={`
+                  position: absolute;
+                  right: 0;
+                `}
               />
             </Box>
           </Form>
