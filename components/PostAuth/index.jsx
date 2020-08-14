@@ -44,7 +44,7 @@ const StepHeaderTitle = ({ confirming, confirmed, error }) => {
 
 export default () => {
   const [filAddress, setFilAddress] = useState('')
-  const [confirming, setConfirming] = useState(true)
+  const [confirming, setConfirming] = useState(false)
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
   const [sentAddress, setSentAddress] = useState('')
