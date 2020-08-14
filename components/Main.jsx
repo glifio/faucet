@@ -26,34 +26,21 @@ export default () => {
       justifyContent='center'
       height='100%'
       p={[2, 3, 5]}
-      mb={[0, 4]}
     >
       <Box
         display='flex'
-        width='40%'
-        minWidth={12}
+        width={['100%', '100%', '40%']}
         flexDirection='column'
         alignItems='flex-start'
         alignContent='center'
         mb={4}
       >
-        <Menu
-          display='flex'
-          justifyContent='space-between'
-          width='100%'
-          alignItems='center'
-        >
-          <MenuItem>
-            <HeaderGlyph
-              alt='Source: https://unsplash.com/photos/g2Zf3hJyYAc'
-              text='Faucet'
-              imageUrl='/imgfaucet.jpg'
-            />
-          </MenuItem>
-          {/* <MenuItem>
-            <NodeConnectedGlyph apiAddress={process.env.LOTUS_NODE_JSONRPC} />
-          </MenuItem> */}
-        </Menu>
+        <HeaderGlyph
+          alt='Source: https://unsplash.com/photos/g2Zf3hJyYAc'
+          text='Faucet'
+          imageUrl='/imgfaucet.jpg'
+        />
+
         <Box
           display='flex'
           flexDirection='column'
@@ -70,8 +57,10 @@ export default () => {
       </Box>
       <Box
         display='flex'
-        width='50%'
+        // flexGrow='1'
         minHeight={12}
+        width={['100%', '100%', '50%']}
+        minWidth={11}
         flexWrap='wrap'
         justifyContent='space-evenly'
         margin='auto'
