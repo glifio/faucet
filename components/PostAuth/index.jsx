@@ -135,6 +135,14 @@ export default () => {
     removeFaucetGrantCid()
   }
 
+  const back = () => {
+    setErr('')
+    setFilAddress('')
+    removeFaucetGrantCid()
+    setCidToConfirm('')
+    setConfirmed(false)
+  }
+
   // Lets remove this?
   const calculateHeaderText = () => {
     if (!confirmed && !confirming && !err)
@@ -215,6 +223,9 @@ export default () => {
           <Text m={0} px={4}>
             {StepHeaderTitle({ confirmed, confirming, error: err })}
           </Text>
+          {confirmed && (
+            <Button mx={2} variant='secondary' title='Back' onClick={back} />
+          )}
           {err && (
             <Button mx={2} variant='secondary' title='Retry' onClick={reset} />
           )}
