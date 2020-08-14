@@ -153,11 +153,9 @@ export default () => {
             {filAddress} has {balance.toFil()} FIL.
           </Text>
         )}
-        {err && (
-          <Label color='status.fail.background' mt={3} mb={0}>
-            {err}
-          </Label>
-        )}
+        <Label color='status.fail.background' minHeight={6} mt={3} mb={0}>
+          {err}
+        </Label>
       </Box>
     </Box>
   )
