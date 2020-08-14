@@ -6,7 +6,6 @@ import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 export const Confirming = ({ err }) => {
   return (
     <>
-      <Text>Your request is being processed by the Filecoin network</Text>
       <Box
         display='flex'
         flexDirection='column'
