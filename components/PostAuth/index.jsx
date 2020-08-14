@@ -26,6 +26,14 @@ const Form = styled.form`
   flex-grow: 1;
 `
 
+const Highlight = styled.span`
+  font-size: ${(props) => props.theme.fontSizes[3]};
+  border-radius: ${(props) => props.theme.radii[6]};
+  padding: 0rem 1rem;
+  margin-right: 0.5rem;
+  background-color: #ffc0cb;
+`
+
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
   if (error) return 'Oops. Try again'
   if (confirming) return 'Confirming...'
@@ -39,7 +47,7 @@ export default () => {
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
   const [sentAddress, setSentAddress] = useState('')
-  const [err, setErr] = useState(true)
+  const [err, setErr] = useState('')
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
 
@@ -253,10 +261,16 @@ export default () => {
         {!confirming && confirmed && (
           <Confirmed address={sentAddress} cid={cidToConfirm} />
         )}
-
-        <Label color='status.fail.background' mt={3} mb={0}>
-          {err}
-        </Label>
+        {err ? (
+          <Label color='status.fail.background' minHeight={6} mt={3} mb={0}>
+            {err}
+          </Label>
+        ) : (
+          <Label color='core.darkgray' textAlign='left' minHeight={6} mt={3}>
+            The amount of FIL you receive depends on how much power you hold in
+            the network
+          </Label>
+        )}
       </Box>
     </>
   )
