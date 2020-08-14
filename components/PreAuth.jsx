@@ -1,6 +1,6 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { Box, StepHeader, Text, Card, IconGitHub } from './Shared'
+import { Box, Text, IconGitHub } from './Shared'
 
 export default () => {
   return (
