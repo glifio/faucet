@@ -21,6 +21,7 @@ export default () => {
     >
       <Box
         display='flex'
+        maxWidth={13}
         width={['100%', '100%', '40%']}
         flexDirection='column'
         alignItems='flex-start'
@@ -61,6 +62,7 @@ export default () => {
       <Box
         display='flex'
         width={['100%', '80%', '55%']}
+        px={[0, 4]}
         minWidth={11}
         flexWrap='wrap'
         justifyContent='space-evenly'
@@ -70,6 +72,7 @@ export default () => {
           display='flex'
           flexDirection='column'
           p={3}
+          mx={4}
           minHeight={10}
           width='100%'
           maxWidth={13}
