@@ -5,8 +5,6 @@ import Box from '../Box'
 import { IconGlif } from '../Icons'
 import { Header } from '../Typography'
 
-Box, IconGlif, Header
-
 const HeaderGlyph = ({ alt, color, text, imageUrl }) => {
   return (
     <MenuItem display='flex' alignItems='center' width={['100%', 'auto']}>
