@@ -48,7 +48,7 @@ export default () => {
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
   const [sentAddress, setSentAddress] = useState('')
-  const [err, setErr] = useState('')
+  const [err, setErr] = useState(true)
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
 
@@ -224,14 +224,12 @@ export default () => {
                 }}
               />
               <Button
+                position='absolute'
+                right='0'
                 mx={2}
                 type='submit'
                 title='Request'
                 disabled={!filAddress}
-                css={`
-                  position: absolute;
-                  right: 0;
-                `}
               />
             </Box>
           </Form>
@@ -267,19 +265,20 @@ export default () => {
           )}
         </Box>
       </Card>
-      <Box pt={0} mx={3} textAlign='center'>
+      <Box pt={0} mx={0} textAlign='center'>
+        {!confirmed && !err && (
+          <Label color='core.darkgray' textAlign='left' minHeight={6} mt={3}>
+            The amount of FIL you receive depends on how much power you hold in
+            the network
+          </Label>
+        )}
         {confirming && <Confirming cid={cidToConfirm} err={err} />}
         {!confirming && confirmed && (
           <Confirmed address={sentAddress} cid={cidToConfirm} />
         )}
-        {err ? (
+        {err && (
           <Label color='status.fail.background' minHeight={6} mt={3} mb={0}>
             {err}
-          </Label>
-        ) : (
-          <Label color='core.darkgray' textAlign='left' minHeight={6} mt={3}>
-            The amount of FIL you receive depends on how much power you hold in
-            the network
           </Label>
         )}
       </Box>
