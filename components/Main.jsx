@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
-import { Box, Title, Header, Label } from './Shared'
+import { Box, Title, Header, Label, Text } from './Shared'
 import CheckBalanceAmount from './CheckBalanceAmount'
 import { useJwt } from '../lib/JwtHandler'
 import ErrorGlyph from './Shared/Glyph/ErrorGlyph'
@@ -65,21 +65,9 @@ export default () => {
             </Label>
           </Box>
         </Box>
-        <Title
-          display={['inline-block', 'inline-block', 'none']}
-          width='100%'
-          textAlign='center'
-          fontSize={6}
-          css={`
-            font-family: 'system-ui';
-          `}
-        >
-          ↓
-        </Title>
       </Box>
       <Box
         display='flex'
-        // flexGrow='1'
         width={['100%', '100%', '50%']}
         minWidth={11}
         flexWrap='wrap'
@@ -89,14 +77,16 @@ export default () => {
         <Box
           display='flex'
           flexDirection='column'
-          m={3}
+          p={3}
           minHeight={10}
           width='100%'
           maxWidth={13}
           alignItems='center'
           justifyContent='center'
+          borderRadius={2}
+          bg='background.screen'
         >
-          {jwt ? <PostAuth /> : <PreAuth />}
+          {true ? <PostAuth /> : <PreAuth />}
         </Box>
         <CheckBalanceAmount />
       </Box>
