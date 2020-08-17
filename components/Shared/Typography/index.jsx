@@ -12,7 +12,6 @@ const H1Base = styled.h1`
   ${space}
 `
 
-
 export const Header = forwardRef(({ children, ...props }, ref) => (
   <H1Base ref={ref} {...theme.textStyles.header} {...props}>
     {children}
@@ -92,4 +91,12 @@ export const InputLabelBase = styled.label`
   ${typography}
   ${layout}
   ${space}
+`
+
+export const Highlight = styled.span`
+  border-radius: ${(props) => props.theme.radii[6]};
+  padding: 0rem 1rem;
+  margin-right: 0.5rem;
+  background-color: #ffc0cb;
+  ${typography}
 `

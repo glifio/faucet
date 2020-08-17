@@ -2,19 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
-import { Box, Title, Header, Label, Text } from './Shared'
+import { Box, Title, Header, Label, Highlight } from './Shared'
 import CheckBalanceAmount from './CheckBalanceAmount'
 import { useJwt } from '../lib/JwtHandler'
 import ErrorGlyph from './Shared/Glyph/ErrorGlyph'
 import HeaderGlyph from './Shared/Glyph/HeaderGlyph'
-
-const Highlight = styled.span`
-  font-size: ${(props) => props.theme.fontSizes[2]};
-  border-radius: ${(props) => props.theme.radii[6]};
-  padding: 0rem 1rem;
-  margin-right: 0.5rem;
-  background-color: #ffc0cb;
-`
 
 export default () => {
   const { jwt } = useJwt()
@@ -29,7 +21,7 @@ export default () => {
     >
       <Box
         display='flex'
-        width={['100%', '100%', '45%', '40%']}
+        width={['100%', '100%', '40%']}
         flexDirection='column'
         alignItems='flex-start'
         alignContent='center'
@@ -56,11 +48,11 @@ export default () => {
           </Title>
           <Box mt={[2, 3, 4, 6]} maxWidth={12}>
             <Label color='core.darkgray' textAlign='left' mt={3}>
-              <Highlight>Miners</Highlight>
+              <Highlight fontSize={2}>Miners</Highlight>
               You can reuse this faucet by entering in your miner ID
             </Label>
             <Label color='core.darkgray' textAlign='left' mt={3}>
-              <Highlight>Not a miner?</Highlight>
+              <Highlight fontSize={2}>Not a miner?</Highlight>
               t1 and t3 addresses can only use this faucet once
             </Label>
           </Box>
@@ -68,7 +60,7 @@ export default () => {
       </Box>
       <Box
         display='flex'
-        width={['100%', '100%', '50%']}
+        width={['100%', '80%', '55%']}
         minWidth={11}
         flexWrap='wrap'
         justifyContent='space-evenly'
