@@ -63,6 +63,7 @@ export default () => {
       display='flex'
       flexDirection='column'
       m={3}
+      mt={5}
       minHeight={10}
       width='100%'
       maxWidth={13}
@@ -105,7 +106,6 @@ export default () => {
           flexDirection='row'
           justifyContent='space-between'
           flexWrap='wrap'
-          // bg='input.background.base'
         >
           <Form onSubmit={onSubmit}>
             <Box
@@ -131,6 +131,8 @@ export default () => {
                 }}
               />
               <Button
+                position='absolute'
+                right='0'
                 type='submit'
                 title='Check'
                 variant='secondary'
@@ -138,10 +140,6 @@ export default () => {
                 px={4}
                 disabled={!filAddress}
                 bg='transparent'
-                css={`
-                  position: absolute;
-                  right: 0;
-                `}
               />
             </Box>
           </Form>
