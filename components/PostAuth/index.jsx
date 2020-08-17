@@ -265,9 +265,9 @@ export default () => {
           )}
         </Box>
       </Card>
-      <Box pt={0} mx={0} textAlign='center'>
+      <Box pt={0} mx={0} textAlign='center' minHeight={6} mt={3}>
         {!confirmed && !err && (
-          <Label color='core.darkgray' textAlign='left' minHeight={6} mt={3}>
+          <Label color='core.darkgray' textAlign='left' m={0}>
             The amount of FIL you receive depends on how much power you hold in
             the network
           </Label>
@@ -277,7 +277,7 @@ export default () => {
           <Confirmed address={sentAddress} cid={cidToConfirm} />
         )}
         {err && (
-          <Label color='status.fail.background' minHeight={6} mt={3} mb={0}>
+          <Label color='status.fail.background' m={0}>
             {err}
           </Label>
         )}

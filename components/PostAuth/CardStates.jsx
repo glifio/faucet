@@ -13,7 +13,7 @@ export const Confirming = ({ err }) => {
         width='100%'
       >
         {err && (
-          <Label color='status.fail.background' mt={3} mb={0}>
+          <Label color='status.fail.background' m={0}>
             {err}
           </Label>
         )}
@@ -34,7 +34,7 @@ Confirming.defaultProps = {
 export const Confirmed = ({ address, cid }) => {
   return (
     <>
-      <Box display='flex' alignItems='center' justifyContent='center' my={3}>
+      <Box display='flex' alignItems='center' justifyContent='center'>
         <Text display='inline' my={0} mx={2}>
           Filecoin sent to {address}
         </Text>{' '}

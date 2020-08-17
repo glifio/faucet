@@ -62,7 +62,7 @@ export default () => {
     <Box
       display='flex'
       flexDirection='column'
-      m={3}
+      p={3}
       mt={5}
       minHeight={10}
       width='100%'
@@ -145,13 +145,13 @@ export default () => {
           </Form>
         </Box>
       </Card>
-      <Box p={3} pt={0} mx={3}>
+      <Box pt={0} mx={3} minHeight={4}>
         {balance && !err && (
           <Text color='core.primary'>
             {filAddress} has {balance.toFil()} FIL.
           </Text>
         )}
-        <Label color='status.fail.background' minHeight={6} mt={3} mb={0}>
+        <Label color='status.fail.background' mt={3} mb={0}>
           {err}
         </Label>
       </Box>
