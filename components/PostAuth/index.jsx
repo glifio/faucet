@@ -48,7 +48,7 @@ export default () => {
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
   const [sentAddress, setSentAddress] = useState('')
-  const [err, setErr] = useState(true)
+  const [err, setErr] = useState('')
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
 
