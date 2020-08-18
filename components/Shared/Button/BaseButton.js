@@ -5,7 +5,8 @@ import {
   borderRadius,
   flexbox,
   color,
-  border
+  border,
+  position
 } from 'styled-system'
 
 const applyStyles = (styleProperty, props, disabledColor) => {
@@ -17,7 +18,9 @@ const applyStyles = (styleProperty, props, disabledColor) => {
 }
 
 export default styled.button.attrs(props => ({
-  p: 3,
+  height: 6,
+  py: 2,
+  px: 3,
   fontSize: 3,
   borderWidth: 1,
   borderRadius: 2,
@@ -43,4 +46,5 @@ export default styled.button.attrs(props => ({
   ${flexbox}
   ${border}
   ${color}
+  ${position}
 `

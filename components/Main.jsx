@@ -1,84 +1,84 @@
 import React from 'react'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
-import {
-  Box,
-  Card,
-  IconGlif,
-  Title,
-  Text,
-  StyledATag,
-  Menu,
-  MenuItem,
-  NodeConnectedGlyph
-} from './Shared'
+import { Box, Title, Header, Label, Highlight } from './Shared'
 import CheckBalanceAmount from './CheckBalanceAmount'
 import { useJwt } from '../lib/JwtHandler'
+import HeaderGlyph from './Shared/Glyph/HeaderGlyph'
 
 export default () => {
   const { jwt } = useJwt()
   return (
-    <Box p={[2, 3, 5]} mb={[0, 4]}>
+    <Box
+      display='flex'
+      flexWrap='wrap'
+      alignItems='center'
+      justifyContent='center'
+      flexGrow='1'
+      p={[2, 3, 5]}
+    >
       <Box
         display='flex'
+        maxWidth={13}
+        width={['100%', '100%', '40%']}
         flexDirection='column'
         alignItems='flex-start'
         alignContent='center'
         mb={4}
       >
-        <Menu
-          display='flex'
-          justifyContent='space-between'
-          width='100%'
-          alignItems='center'
-        >
-          <MenuItem>
-            <Box
-              display='flex'
-              justifyContent='center'
-              alignItems='center'
-              borderRadius={3}
-              bg='core.primary'
-              borderRadius={3}
-              height={7}
-            >
-              <IconGlif width='48px' height='48px' fill='white' />
-            </Box>
-          </MenuItem>
-          {/* <MenuItem>
-            <NodeConnectedGlyph apiAddress={process.env.LOTUS_NODE_JSONRPC} />
-          </MenuItem> */}
-        </Menu>
+        <HeaderGlyph
+          alt='Source: https://unsplash.com/photos/g2Zf3hJyYAc'
+          text='Faucet'
+          imageUrl='/imgfaucet.jpg'
+        />
+
         <Box
           display='flex'
           flexDirection='column'
-          mt={4}
+          mt={[2, 4, 4]}
           alignSelf='center'
-          alignItems='center'
-          textAlign='center'
+          textAlign='left'
         >
-          <Title fontSize={5}>Filecoin faucet</Title>
-          <Text maxWidth={15}>
-            This app provides small amounts of testnet FIL to anyone who has a
-            GitHub account to make testing and experimentation easy.
-            <br />
-            <br />
-            Non-miners can only use this faucet once.
-            <br />
-            <br />
-            Miners with more power will receive more testnet FIL from this
-            faucet.
-          </Text>
+          <Header>Quickly, easily receive testnet Filecoin</Header>
+          <Title mt={3} lineHeight='140%'>
+            Receive small amounts of testnet FIL to help your testing and
+            experimentation.
+          </Title>
+          <Box mt={[2, 3, 4, 6]} maxWidth={12}>
+            <Label color='core.darkgray' textAlign='left' mt={3}>
+              <Highlight fontSize={2}>Miners</Highlight>
+              You can reuse this faucet by entering in your miner ID
+            </Label>
+            <Label color='core.darkgray' textAlign='left' mt={3}>
+              <Highlight fontSize={2}>Not a miner?</Highlight>
+              t1 and t3 addresses can only use this faucet once
+            </Label>
+          </Box>
         </Box>
       </Box>
       <Box
         display='flex'
+        width={['100%', '80%', '55%']}
+        minWidth={11}
         flexWrap='wrap'
         justifyContent='space-evenly'
-        maxWidth={19}
         margin='auto'
       >
-        {jwt ? <PostAuth /> : <PreAuth />}
+        <Box
+          display='flex'
+          flexDirection='column'
+          p={3}
+          mt={[5, 0, 0]}
+          minHeight={10}
+          width='100%'
+          maxWidth={13}
+          alignItems='center'
+          justifyContent='center'
+          borderRadius={2}
+          bg='background.screen'
+        >
+          {jwt ? <PostAuth /> : <PreAuth />}
+        </Box>
         <CheckBalanceAmount />
       </Box>
     </Box>

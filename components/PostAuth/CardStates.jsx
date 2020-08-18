@@ -3,38 +3,24 @@ import { string } from 'prop-types'
 import { Box, Text, Label, StyledATag } from '../Shared'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 
-export const Confirming = ({ cid, err }) => {
+export const Confirming = ({ err }) => {
   return (
-    <>
-      <Text>
-        We're making sure your FIL request gets processed by the Filecoin
-        network. This might take up to 5 minutes.
-      </Text>
-      <Box
-        display='flex'
-        flexDirection='column'
-        justifyContent='flex-start'
-        width='100%'
-      >
-        {/* <StyledATag
-          rel='noopener noreferrer'
-          target='_blank'
-          href={`https://filscan.io/#/message/detail?cid=${cid}`}
-        >
-          <Label color='core.primary'>View transaction on Filscan</Label>
-        </StyledATag> */}
-        {err && (
-          <Label color='status.fail.background' mt={3} mb={0}>
-            {err}
-          </Label>
-        )}
-      </Box>
-    </>
+    <Box
+      display='flex'
+      flexDirection='column'
+      justifyContent='flex-start'
+      width='100%'
+    >
+      {err && (
+        <Label color='status.fail.background' m={0}>
+          {err}
+        </Label>
+      )}
+    </Box>
   )
 }
 
 Confirming.propTypes = {
-  cid: string.isRequired,
   err: string
 }
 
@@ -42,28 +28,33 @@ Confirming.defaultProps = {
   err: ''
 }
 
-export const Confirmed = ({ address, cid }) => {
+export const Confirmed = ({ address, enteredAddress, cid }) => {
   return (
-    <>
-      <Box my={3}>
-        <Text display='inline'>All set!</Text>{' '}
-        <Text display='inline' color='core.primary'>
-          {address}
-        </Text>{' '}
-        <Text display='inline'>has Filecoin.</Text>
-      </Box>
+    <Box display='flex' alignItems='center' justifyContent='center'>
+      {address !== enteredAddress ? (
+        <Text display='inline' my={0} mx={2}>
+          Filecoin sent to {address} - {enteredAddress}'s worker address
+        </Text>
+      ) : (
+        <Text display='inline' my={0} mx={2}>
+          Filecoin sent to {address}
+        </Text>
+      )}{' '}
       <StyledATag
+        display='inline'
         rel='noopener noreferrer'
         target='_blank'
+        border='none'
         href={`https://filscan.io/#/message/detail?cid=${cid}`}
       >
-        <Label color='core.primary'>View transaction on Filscan</Label>
+        <Label color='core.primary'>VIEW</Label>
       </StyledATag>
-    </>
+    </Box>
   )
 }
 
 Confirmed.propTypes = {
   address: ADDRESS_PROPTYPE,
+  enteredAddress: ADDRESS_PROPTYPE,
   cid: string.isRequired
 }
