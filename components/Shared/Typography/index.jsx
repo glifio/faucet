@@ -1,8 +1,7 @@
 import React, { forwardRef } from 'react'
-import PropTypes from 'prop-types'
 import { color, typography, layout, space } from 'styled-system'
 import styled from 'styled-components'
-import { node, oneOf } from 'prop-types'
+import { node, oneOf, number } from 'prop-types'
 
 import theme from '../theme'
 
@@ -102,5 +101,5 @@ export const Highlight = styled.span`
   ${typography}
 `
 Highlight.propTypes = {
-  fontSize: PropTypes.number.isRequired
+  fontSize: number.isRequired
 }

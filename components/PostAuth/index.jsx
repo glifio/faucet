@@ -27,14 +27,6 @@ const Form = styled.form`
   flex-grow: 1;
 `
 
-const Highlight = styled.span`
-  font-size: ${(props) => props.theme.fontSizes[3]};
-  border-radius: ${(props) => props.theme.radii[6]};
-  padding: 0rem 1rem;
-  margin-right: 0.5rem;
-  background-color: #ffc0cb;
-`
-
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
   if (error) return 'Oops. Try again.'
   if (confirming) return 'Confirming...'
@@ -152,15 +144,6 @@ export default () => {
     setConfirmed(false)
   }
 
-  // Lets remove this?
-  const calculateHeaderText = () => {
-    if (!confirmed && !confirming && !err)
-      return 'Enter an address to request FIL'
-    if (confirming) return ''
-    if (confirmed) return ''
-    if (err) return ''
-  }
-
   return (
     <>
       <Box
@@ -274,7 +257,11 @@ export default () => {
         )}
         {confirming && <Confirming cid={cidToConfirm} err={err} />}
         {!confirming && confirmed && (
-          <Confirmed address={sentAddress} cid={cidToConfirm} />
+          <Confirmed
+            address={sentAddress}
+            enteredAddress={filAddress}
+            cid={cidToConfirm}
+          />
         )}
         {err && (
           <Label color='status.fail.background' m={0}>

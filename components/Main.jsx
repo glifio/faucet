@@ -1,11 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
 import { Box, Title, Header, Label, Highlight } from './Shared'
 import CheckBalanceAmount from './CheckBalanceAmount'
 import { useJwt } from '../lib/JwtHandler'
-import ErrorGlyph from './Shared/Glyph/ErrorGlyph'
 import HeaderGlyph from './Shared/Glyph/HeaderGlyph'
 
 export default () => {
@@ -79,7 +77,7 @@ export default () => {
           borderRadius={2}
           bg='background.screen'
         >
-          {jwt ? <PostAuth /> : <PreAuth />}
+          {true ? <PostAuth /> : <PreAuth />}
         </Box>
         <CheckBalanceAmount />
       </Box>

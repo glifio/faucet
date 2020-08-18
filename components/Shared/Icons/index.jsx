@@ -339,3 +339,11 @@ export const IconGitHub = forwardRef((props, ref) => (
     />
   </IconBase>
 ))
+
+IconGithub.propTypes = {
+  fill: string
+}
+
+IconGithub.defaultProps = {
+  fill: ''
+}
