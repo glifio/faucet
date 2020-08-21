@@ -150,7 +150,7 @@ export default () => {
           <>
             <Label
               display='inline-block'
-              color='core.nearblack'
+              color='core.darkgray'
               maxWidth={9}
               m={0}
               overflow='hidden'
@@ -161,7 +161,7 @@ export default () => {
             >
               {filAddress}
             </Label>
-            <Label display='inline-block' color='core.nearblack' ml={1} my={0}>
+            <Label display='inline-block' color='core.darkgray' my={0}>
               has
             </Label>
             <Label display='inline-block' color='core.primary' ml={1} my={0}>
