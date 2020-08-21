@@ -18,8 +18,8 @@ export default styled.input.attrs(props => ({
 }))`
   min-width: 0;
   flex-grow: 1;
-  padding-left: ${props => props.theme.space[3]}px;
-  padding-right: ${props => props.theme.space[3]}px;
+  padding-left: ${props => props.theme.space[2]}px;
+  padding-right: ${props => props.theme.space[2]}px;
   border-radius: ${props => props.theme.radii[1]};
   transition: 0.2s ease-in-out;
   font-size: ${props => props.theme.fontSizes[2]};
