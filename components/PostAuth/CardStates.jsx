@@ -1,6 +1,6 @@
 import React from 'react'
 import { string } from 'prop-types'
-import { Box, Label, StyledATag } from '../Shared'
+import { Box, Label, StyledATag, InlineBox } from '../Shared'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 
 export const Confirming = ({ err }) => {
@@ -42,9 +42,7 @@ export const Confirmed = ({ address, enteredAddress, cid }) => {
               maxWidth={8}
               color='core.primary'
               css={`
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                overflow: hidden;
+                white-space: wrap;
               `}
             >
               {address}
@@ -65,25 +63,19 @@ export const Confirmed = ({ address, enteredAddress, cid }) => {
           </Box>
         </>
       ) : (
-        <>
-          <Label display='inline-block' my={0}>
-            Filecoin sent to{' '}
-          </Label>
-          <Label
+        <Label display='inline-block' my={0}>
+          Filecoin sent to{' '}
+          <InlineBox
             display='inline-block'
             fontSize={2}
-            maxWidth={9}
-            ml={1}
             color='core.primary'
             css={`
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
+              white-space: wrap;
             `}
           >
-            {address} t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy
-          </Label>
-        </>
+            {address}
+          </InlineBox>
+        </Label>
       )}{' '}
       <StyledATag
         display='inline'
