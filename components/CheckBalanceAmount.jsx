@@ -145,10 +145,10 @@ export default () => {
           </Form>
         </Box>
       </Card>
-      <Box display='flex' pt={0} mx={3} minHeight={6} pt={3}>
+      <Box display='flex' width='100%' minHeight={6} pt={3} px={2}>
         {balance && !err && (
           <>
-            <Text
+            <Label
               display='inline-block'
               color='core.nearblack'
               maxWidth={9}
@@ -159,11 +159,14 @@ export default () => {
                 white-space: nowrap;
               `}
             >
-              {filAddress} has
-            </Text>
-            <Text display='inline-block' color='core.primary' ml={2} my={0}>
-              has {balance.toFil()} FIL
-            </Text>
+              {filAddress}
+            </Label>
+            <Label display='inline-block' color='core.nearblack' ml={1} my={0}>
+              has
+            </Label>
+            <Label display='inline-block' color='core.primary' ml={1} my={0}>
+              {balance.toFil()} FIL
+            </Label>
           </>
         )}
         <Label color='status.fail.background' m={0}>
