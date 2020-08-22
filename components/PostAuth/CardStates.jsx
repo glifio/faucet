@@ -63,7 +63,7 @@ export const Confirmed = ({ address, enteredAddress, cid }) => {
           </Box>
         </>
       ) : (
-        <Label display='inline-block' my={0}>
+        <Label display='inline-block' my={0} mx={2}>
           Filecoin sent to{' '}
           <InlineBox
             display='inline-block'
