@@ -9,10 +9,10 @@ module.exports = (phase) => {
       env: {
         GITHUB_CLIENT_ID: '8861de8f921b556a4a0e',
         GITHUB_REDIRECT_URL: 'https://github-oauth.glif.io/callback',
-        BACKEND_URL: 'https://verifier.glif.io',
+        BACKEND_URL: 'https://spacerace.verifier.glif.io',
         OAUTH_STATE_STRING: 'faucet',
-        LOTUS_NODE_JSONRPC: 'https://faucet.calibration.fildev.network/rpc/v0',
-        NETWORK_IDENTIFIER: 'calibration-net',
+        LOTUS_NODE_JSONRPC: 'https://faucet.testnet.filecoin.io/rpc/v0',
+        NETWORK_IDENTIFIER: 'space-race',
         IS_PROD: true
       }
     }
