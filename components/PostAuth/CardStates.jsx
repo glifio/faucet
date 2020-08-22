@@ -1,6 +1,6 @@
 import React from 'react'
 import { string } from 'prop-types'
-import { Box, Text, Label, StyledATag } from '../Shared'
+import { Box, Label, StyledATag, InlineBox } from '../Shared'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 
 export const Confirming = ({ err }) => {
@@ -30,15 +30,52 @@ Confirming.defaultProps = {
 
 export const Confirmed = ({ address, enteredAddress, cid }) => {
   return (
-    <Box display='flex' alignItems='center' justifyContent='center'>
+    <>
       {address !== enteredAddress ? (
-        <Text display='inline' my={0} mx={2}>
-          Filecoin sent to {address} - {enteredAddress}'s worker address
-        </Text>
+        <>
+          <Box display='flex' mr={2}>
+            <Label display='inline-block' my={0} mx={2}>
+              Filecoin sent to
+            </Label>
+            <Label
+              display='inline-block'
+              maxWidth={8}
+              color='core.primary'
+              css={`
+                white-space: wrap;
+              `}
+            >
+              {address}
+            </Label>{' '}
+            <Label
+              display='inline-block'
+              maxWidth={8}
+              color='core.primary'
+              css={`
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              `}
+            >
+              ({enteredAddress}
+            </Label>{' '}
+            <Label>'s worker address)</Label>
+          </Box>
+        </>
       ) : (
-        <Text display='inline' my={0} mx={2}>
-          Filecoin sent to {address}
-        </Text>
+        <Label display='inline-block' my={0} mx={2}>
+          Filecoin sent to{' '}
+          <InlineBox
+            display='inline-block'
+            fontSize={2}
+            color='core.primary'
+            css={`
+              white-space: wrap;
+            `}
+          >
+            {address}
+          </InlineBox>
+        </Label>
       )}{' '}
       <StyledATag
         display='inline'
@@ -49,7 +86,7 @@ export const Confirmed = ({ address, enteredAddress, cid }) => {
       >
         <Label color='core.primary'>VIEW</Label>
       </StyledATag>
-    </Box>
+    </>
   )
 }
 
