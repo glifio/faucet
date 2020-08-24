@@ -30,6 +30,7 @@ export default () => {
   const [balance, setBalance] = useState(null)
   const onSubmit = async (e) => {
     e.preventDefault()
+    setErr('')
     const isValid = validateAddressString(filAddress)
     if (isValid) {
       setLoading(true)

@@ -248,8 +248,15 @@ export default () => {
           )}
         </Box>
       </Card>
-      <Box display='flex' width='100%' textAlign='left' minHeight={7} pt={3} px={2} color="core.darkgray">
-        
+      <Box
+        display='flex'
+        width='100%'
+        textAlign='left'
+        minHeight={7}
+        pt={3}
+        px={2}
+        color='core.darkgray'
+      >
         {!confirmed && !err && (
           <Label color='core.darkgray' textAlign='left' m={0}>
             The amount of FIL you receive depends on how much power you hold in
