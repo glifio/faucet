@@ -71,7 +71,7 @@ export const Confirmed = ({ address, enteredAddress, cid }) => {
         rel='noopener noreferrer'
         target='_blank'
         border='none'
-        href={`https://filscan.io/#/message/detail?cid=${cid}`}
+        href={`https://filfox.info/en/message/${cid}`}
       >
         <Label color='core.primary'>VIEW</Label>
       </StyledATag>
