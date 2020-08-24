@@ -32,36 +32,35 @@ export const Confirmed = ({ address, enteredAddress, cid }) => {
   return (
     <>
       {address !== enteredAddress ? (
-        <>
-          <Box display='flex' mr={2}>
-            <Label display='inline-block' my={0} mx={2}>
-              Filecoin sent to
-            </Label>
-            <Label
-              display='inline-block'
-              maxWidth={8}
-              color='core.primary'
-              css={`
-                white-space: wrap;
-              `}
-            >
-              {address}
-            </Label>{' '}
-            <Label
-              display='inline-block'
-              maxWidth={8}
-              color='core.primary'
-              css={`
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                overflow: hidden;
-              `}
-            >
-              ({enteredAddress}
-            </Label>{' '}
-            <Label>'s worker address)</Label>
-          </Box>
-        </>
+        <Box display='flex' mr={2}>
+          <Label display='inline-block' my={0} mx={2}>
+            Filecoin sent to
+          </Label>
+          <Label
+            display='inline-block'
+            maxWidth={8}
+            color='core.primary'
+            css={`
+              white-space: wrap;
+            `}
+          >
+            {address}
+          </Label>
+          <Label ml={1}>(</Label>
+          <Label
+            display='inline-block'
+            maxWidth={8}
+            color='core.primary'
+            css={`
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+            `}
+          >
+            {enteredAddress}
+          </Label>
+          <Label>'s worker address)</Label>
+        </Box>
       ) : (
         <Label display='inline-block' my={0} mx={2}>
           Filecoin sent to{' '}
