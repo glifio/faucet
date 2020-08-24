@@ -6,7 +6,6 @@ import { validateAddressString } from '@openworklabs/filecoin-address'
 import {
   Box,
   Button,
-  StepHeader,
   Text,
   Input,
   InputLabelBase,
@@ -235,12 +234,12 @@ export default () => {
           >
             {StepHeaderTitle({ confirmed, confirming, error: err })}
           </Text>
-          {confirming && (
+          {confirming && !err && (
             <Box mr={2}>
               <Loading />
             </Box>
           )}
-          {confirmed && (
+          {confirmed && !err && (
             <Button mx={2} variant='secondary' title='Return' onClick={back} />
           )}
           {err && (
@@ -257,14 +256,8 @@ export default () => {
         px={2}
         color='core.darkgray'
       >
-        {!confirmed && !err && (
-          <Label color='core.darkgray' textAlign='left' m={0}>
-            The amount of FIL you receive depends on how much power you hold in
-            the network
-          </Label>
-        )}
-        {confirming && <Confirming cid={cidToConfirm} err={err} />}
-        {!confirming && confirmed && (
+        {confirming && !err && <Confirming />}
+        {!confirming && confirmed && !err && (
           <Confirmed
             address={sentAddress}
             enteredAddress={filAddress}
