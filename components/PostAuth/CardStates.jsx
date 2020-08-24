@@ -3,7 +3,7 @@ import { string } from 'prop-types'
 import { Box, Label, StyledATag, InlineBox } from '../Shared'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 
-export const Confirming = ({ err }) => {
+export const Confirming = () => {
   return (
     <Box
       display='flex'
@@ -11,21 +11,11 @@ export const Confirming = ({ err }) => {
       justifyContent='flex-start'
       width='100%'
     >
-      {err && (
-        <Label color='status.fail.background' m={0}>
-          {err}
-        </Label>
-      )}
+      <Label color='core.darkgray' textAlign='left' m={0}>
+        Processing your Filecoin transaction.
+      </Label>
     </Box>
   )
-}
-
-Confirming.propTypes = {
-  err: string
-}
-
-Confirming.defaultProps = {
-  err: ''
 }
 
 export const Confirmed = ({ address, enteredAddress, cid }) => {
