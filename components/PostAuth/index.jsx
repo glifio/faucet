@@ -44,10 +44,10 @@ export default () => {
   const { confirm } = useMessageConfirmation()
 
   useEffect(() => {
-    const confirmMsgFromStorage = async (cid, address) => {
+    const confirmMsgFromStorage = async (cid, address, sentAddress) => {
       setConfirming(true)
       try {
-        await confirm(cid, address)
+        await confirm(cid, address, sentAddress)
         setConfirmed(true)
       } catch (err) {
         setFilAddress('')
@@ -63,8 +63,14 @@ export default () => {
     }
     const pendingFaucetGrant = getFaucetGrant()
     if (pendingFaucetGrant.cid && !confirming && !err) {
-      confirmMsgFromStorage(pendingFaucetGrant.cid, pendingFaucetGrant.address)
+      confirmMsgFromStorage(
+        pendingFaucetGrant.cid,
+        pendingFaucetGrant.address,
+        pendingFaucetGrant.sentAddress
+      )
       setFilAddress(pendingFaucetGrant.address)
+      setSentAddress(pendingFaucetGrant.sentAddress)
+      setCidToConfirm(pendingFaucetGrant.cid)
     }
   }, [confirming, confirm, setConfirming, setErr])
 
@@ -104,7 +110,7 @@ export default () => {
           jwt,
           filAddress
         )
-        await confirm(faucetGrantCid)
+        await confirm(faucetGrantCid, filAddress, faucetGrantAddress)
         setSentAddress(faucetGrantAddress)
         setConfirmed(true)
       } catch (error) {
