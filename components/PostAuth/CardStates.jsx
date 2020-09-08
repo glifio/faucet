@@ -1,6 +1,7 @@
 import React from 'react'
+import styled from 'styled-components'
 import { string } from 'prop-types'
-import { Box, Label, StyledATag, InlineBox } from '../Shared'
+import { Box, Label, StyledATag, AddressLink, InlineBox } from '../Shared'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 
 export const Confirming = () => {
@@ -22,48 +23,31 @@ export const Confirmed = ({ address, enteredAddress, cid }) => {
   return (
     <>
       {address !== enteredAddress ? (
-        <Box display='flex' mr={2}>
+        <Box display='flex' alignItems='baseline' mr={2}>
           <Label display='inline-block' my={0} mx={2}>
             Filecoin sent to
           </Label>
-          <Label
-            display='inline-block'
-            maxWidth={8}
-            color='core.primary'
-            css={`
-              white-space: wrap;
-            `}
-          >
-            {address}
-          </Label>
-          <Label ml={1}>(</Label>
-          <Label
-            display='inline-block'
-            maxWidth={8}
-            color='core.primary'
-            css={`
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
-            `}
-          >
-            {enteredAddress}
-          </Label>
+          <AddressLink
+            truncate={true}
+            address={address}
+            href={`https://filfox.info/en/address/${address}`}
+          />
+          <Label ml={1}>( </Label>
+          <AddressLink
+            truncate={true}
+            address={address}
+            href={`https://filfox.info/en/address/${address}`}
+          />
           <Label>'s worker address)</Label>
         </Box>
       ) : (
         <Label display='inline-block' my={0} mx={2}>
           Filecoin sent to{' '}
-          <InlineBox
-            display='inline-block'
-            fontSize={2}
-            color='core.primary'
-            css={`
-              white-space: wrap;
-            `}
-          >
-            {address}
-          </InlineBox>
+          <AddressLink
+            truncate={true}
+            address={address}
+            href={`https://filfox.info/en/address/${address}`}
+          />
         </Label>
       )}{' '}
       <StyledATag
