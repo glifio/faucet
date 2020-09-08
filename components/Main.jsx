@@ -46,12 +46,10 @@ export default () => {
           </Title>
           <Box mt={[2, 3, 4, 6]} maxWidth={12}>
             <Label color='core.darkgray' textAlign='left' mt={3}>
-              <Highlight fontSize={2}>Miners</Highlight>
-              You can reuse this faucet by entering in your miner ID
-            </Label>
-            <Label color='core.darkgray' textAlign='left' mt={3}>
-              <Highlight fontSize={2}>Not a miner?</Highlight>
-              t1 and t3 addresses can only use this faucet once
+              <Highlight fontSize={2}>Rules</Highlight>
+              <br />
+              You can use this faucet one time by authenticating with GitHub and
+              entering in your Filecoin address.
             </Label>
           </Box>
         </Box>
