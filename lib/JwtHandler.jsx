@@ -8,9 +8,6 @@ export const JwtProvider = ({ children }) => {
 
   useEffect(() => {
     if (!!window && typeof window !== 'undefined') {
-      // remove previous JWT from last version
-      window.localStorage.removeItem('faucet-jwt:2')
-
       // we had some breaking changes, so we're using a diff jwt
       const jwt = window.localStorage.getItem(
         `faucet-jwt:${process.env.NETWORK_IDENTIFIER}`
