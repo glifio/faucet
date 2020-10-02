@@ -48,8 +48,8 @@ export default () => {
             <Label color='core.darkgray' textAlign='left' mt={3}>
               <Highlight fontSize={2}>Rules</Highlight>
               <br />
-              You can use this faucet one time by authenticating with GitHub and
-              entering in your Filecoin address.
+              Anyone with a GitHub account over one year old can receive 1 FIL
+              from this faucet, one time only.
             </Label>
           </Box>
         </Box>
