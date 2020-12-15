@@ -17,17 +17,17 @@ class MyApp extends App {
           <meta
             name='description'
             content='A Filecoin faucet, made by Open Work Labs.'
-          />
+            />
           <meta
             name='keywords'
             content='Filecoin,Data,Web,Storage,Blockchain'
-          />
+            />
           <link
             rel='icon'
             type='image/png'
             sizes='32x32'
             href='/favicon-32x32.png'
-          />
+            />
           <link
             rel='icon'
             type='image/png'
@@ -47,6 +47,10 @@ class MyApp extends App {
       </>
     )
   }
+}
+
+MyApp.getInitialProps = () => {
+  return {}
 }
 
 export default MyApp

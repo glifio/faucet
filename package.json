@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 4002"
+    "start": "next start -p ${PORT-4002}"
   },
   "dependencies": {
     "@openworklabs/filecoin-address": "0.0.4",

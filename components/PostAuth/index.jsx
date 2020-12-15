@@ -18,6 +18,7 @@ import { useJwt } from '../../lib/JwtHandler'
 import { useMessageConfirmation } from '../../lib/ConfirmMessage'
 import { getFaucetGrant, removeFaucetGrantCid } from '../../utils/storage'
 import reportError from '../../utils/reportError'
+import { BACKEND_URL } from '@env'
 
 const Form = styled.form`
   display: flex;
@@ -76,7 +77,7 @@ export default () => {
 
   const requestFaucetGrant = async (jwt, filAddress) => {
     const res = await axios.post(
-      `${process.env.BACKEND_URL}/faucet/${filAddress}`,
+      `${BACKEND_URL}/faucet/${filAddress}`,
       {
         targetAddr: filAddress
       },
