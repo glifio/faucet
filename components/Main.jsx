@@ -45,13 +45,20 @@ export default () => {
           alignSelf='center'
           textAlign='left'
         >
-          <Header>Quickly, easily receive testnet Filecoin</Header>
+          <Header lineHeight={1}>
+            Quickly, easily receive testnet Filecoin
+          </Header>
           <Title mt={3} lineHeight='140%'>
             Receive small amounts of testnet FIL to help your testing and
             experimentation.
           </Title>
           <Box mt={[2, 3, 4, 6]} maxWidth={12}>
-            <Label color='core.darkgray' textAlign='left' mt={3}>
+            <Label
+              color='core.darkgray'
+              textAlign='left'
+              mt={3}
+              lineHeight='copy'
+            >
               <Highlight fontSize={2}>Rules</Highlight>
               <br />
               Anyone with a GitHub account over one year old can receive 1 FIL

@@ -106,6 +106,7 @@ export default () => {
           flexDirection='row'
           justifyContent='space-between'
           flexWrap='wrap'
+          height='100%'
         >
           <Form onSubmit={onSubmit}>
             <Box
@@ -114,6 +115,7 @@ export default () => {
               flexGrow='1'
               flexWrap='wrap'
               alignItems='center'
+              height='100%'
             >
               <InputLabelBase display='none' htmlFor='check-fil-address' />
               <Input.Base
@@ -121,6 +123,8 @@ export default () => {
                 width='100%'
                 flexShrink='1'
                 pr={8}
+                pl={3}
+                height='100%'
                 overflow='scroll'
                 placeholder='t1OwL...'
                 value={filAddress}

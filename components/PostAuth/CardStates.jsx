@@ -23,7 +23,7 @@ export const Confirmed = ({ address, enteredAddress, cid }) => {
     <>
       {address !== enteredAddress ? (
         <Box display='flex' alignItems='baseline' mr={2}>
-          <Label display='inline-block' my={0} mx={2}>
+          <Label display='inline-block' my={0} mr={1}>
             Filecoin sent to
           </Label>
           <AddressLink
@@ -54,9 +54,10 @@ export const Confirmed = ({ address, enteredAddress, cid }) => {
         rel='noopener noreferrer'
         target='_blank'
         border='none'
+        height='min-content'
         href={`https://filfox.info/en/message/${cid}`}
       >
-        <Label color='core.primary'>VIEW</Label>
+        VIEW
       </StyledATag>
     </>
   )
