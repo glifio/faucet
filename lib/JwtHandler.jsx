@@ -9,7 +9,6 @@ export const JwtProvider = ({ children }) => {
 
   useEffect(() => {
     if (!!window && typeof window !== 'undefined') {
-      // we had some breaking changes, so we're using a diff jwt
       const jwt = window.localStorage.getItem(
         `faucet-jwt:${NETWORK_IDENTIFIER}`
       )
@@ -19,17 +18,12 @@ export const JwtProvider = ({ children }) => {
 
   const storeJwt = (jwt) => {
     setJwt(jwt)
-    window.localStorage.setItem(
-      `faucet-jwt:${NETWORK_IDENTIFIER}`,
-      jwt
-    )
+    window.localStorage.setItem(`faucet-jwt:${NETWORK_IDENTIFIER}`, jwt)
   }
 
   const removeJwt = () => {
     setJwt('')
-    window.localStorage.removeItem(
-      `faucet-jwt:${NETWORK_IDENTIFIER}`
-    )
+    window.localStorage.removeItem(`faucet-jwt:${NETWORK_IDENTIFIER}`)
   }
 
   return (
