@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { IS_PROD } from '@env'
 // import Router from 'next/router'
 
 // This simply formats error messages and sends them to our slack channel
@@ -10,7 +11,7 @@ export default async (id, shouldSendToErrorPage, ...args) => {
     [`FAUCET:${id}\n`]
   )
   errorText += '------------'
-  if (process.env.IS_PROD) {
+  if (IS_PROD) {
     await axios.post(
       'https://errors.glif.io',
       JSON.stringify({ text: errorText })

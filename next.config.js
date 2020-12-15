@@ -1,32 +1,22 @@
-const {
-  PHASE_PRODUCTION_BUILD,
-  PHASE_PRODUCTION_SERVER
-} = require('next/constants')
+const webpack = require("webpack");
+const path = require("path")
 
-module.exports = (phase) => {
-  if (phase === PHASE_PRODUCTION_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    return {
-      env: {
-        GITHUB_CLIENT_ID: '8861de8f921b556a4a0e',
-        GITHUB_REDIRECT_URL: 'https://github-oauth.glif.io/callback',
-        BACKEND_URL: 'https://spacerace.verifier.glif.io',
-        OAUTH_STATE_STRING: 'faucet-spacerace',
-        LOTUS_NODE_JSONRPC: 'https://node.glif.io/space11/lotus/rpc/v0',
-        NETWORK_IDENTIFIER: 'space-race',
-        IS_PROD: true
-      }
-    }
-  }
-
-  return {
-    env: {
-      GITHUB_CLIENT_ID: '82c4ac1b64e9ef7a0efa',
-      GITHUB_REDIRECT_URL: 'http://localhost:3000/callback',
-      BACKEND_URL: 'http://localhost:8080',
-      OAUTH_STATE_STRING: 'faucet-spacerace',
-      LOTUS_NODE_JSONRPC: 'http://localhost:1234/rpc/v0',
-      NETWORK_IDENTIFIER: 'local',
-      IS_PROD: false
-    }
-  }
+module.exports = {
+  webpack(config) {
+    config.resolve.alias["@env"] = path.join(
+      __dirname,
+      "./constants.js"
+    );
+    return config;
+  },
+  publicRuntimeConfig: {
+    // Will be available on both server and client
+    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+    GITHUB_REDIRECT_URL: process.env.GITHUB_REDIRECT_URL,
+    BACKEND_URL: process.env.BACKEND_URL,
+    OAUTH_STATE_STRING: process.env.OAUTH_STATE_STRING,
+    LOTUS_NODE_JSONRPC: process.env.LOTUS_NODE_JSONRPC,
+    NETWORK_IDENTIFIER: process.env.NETWORK_IDENTIFIER,
+    IS_PROD: process.env.IS_PROD
+  },
 }

@@ -3,6 +3,7 @@ import LotusRpcEngine from '@openworklabs/lotus-jsonrpc-engine'
 import { FilecoinNumber } from '@openworklabs/filecoin-number'
 import styled from 'styled-components'
 import { validateAddressString } from '@openworklabs/filecoin-address'
+import { LOTUS_NODE_JSONRPC } from '@env'
 
 import {
   Box,
@@ -36,7 +37,7 @@ export default () => {
       setLoading(true)
       try {
         const lotus = new LotusRpcEngine({
-          apiAddress: process.env.LOTUS_NODE_JSONRPC
+          apiAddress: LOTUS_NODE_JSONRPC
         })
 
         const balance = new FilecoinNumber(

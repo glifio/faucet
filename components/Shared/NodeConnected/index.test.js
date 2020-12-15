@@ -8,6 +8,7 @@ import connectionStrength from './connectionStrength'
 import NodeConnectedWidget from '.'
 import ThemeProvider from '../ThemeProvider'
 import { flushPromises } from '../../../test-utils'
+import { LOTUS_NODE_JSONRPC } from '@env' 
 
 describe('nodeConnectedWidget', () => {
   describe('nodeConnectedWidget UI Component', () => {
@@ -46,7 +47,7 @@ describe('nodeConnectedWidget', () => {
     test('it renders connecting state', () => {
       const res = render(
         <ThemeProvider>
-          <NodeConnectedWidget apiAddress={process.env.LOTUS_NODE_JSONRPC} />
+          <NodeConnectedWidget apiAddress={LOTUS_NODE_JSONRPC} />
         </ThemeProvider>
       )
       expect(res.container.firstChild).toMatchSnapshot()
@@ -60,7 +61,7 @@ describe('nodeConnectedWidget', () => {
           <ThemeProvider>
             <NodeConnectedWidget
               onConnectionStrengthChange={onChangeSpy}
-              apiAddress={process.env.LOTUS_NODE_JSONRPC}
+              apiAddress={LOTUS_NODE_JSONRPC}
             />
           </ThemeProvider>
         )
@@ -106,7 +107,7 @@ describe('nodeConnectedWidget', () => {
           <ThemeProvider>
             <NodeConnectedWidget
               onConnectionStrengthChange={onChangeSpy}
-              apiAddress={process.env.LOTUS_NODE_JSONRPC}
+              apiAddress={LOTUS_NODE_JSONRPC}
             />
           </ThemeProvider>
         )
@@ -183,7 +184,7 @@ describe('nodeConnectedWidget', () => {
         }
       })
 
-      const nodeURL = process.env.LOTUS_NODE_JSONRPC
+      const nodeURL = LOTUS_NODE_JSONRPC
       const strength = await connectionStrength(nodeURL)
       expect(strength).toBe(1)
     })

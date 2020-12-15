@@ -1,5 +1,6 @@
 import React, { useState, createContext, useContext, useEffect } from 'react'
 import { node } from 'prop-types'
+import { NETWORK_IDENTIFIER } from '@env'
 
 const JwtContext = createContext({})
 
@@ -10,7 +11,7 @@ export const JwtProvider = ({ children }) => {
     if (!!window && typeof window !== 'undefined') {
       // we had some breaking changes, so we're using a diff jwt
       const jwt = window.localStorage.getItem(
-        `faucet-jwt:${process.env.NETWORK_IDENTIFIER}`
+        `faucet-jwt:${NETWORK_IDENTIFIER}`
       )
       if (jwt) setJwt(jwt)
     }
@@ -19,7 +20,7 @@ export const JwtProvider = ({ children }) => {
   const storeJwt = (jwt) => {
     setJwt(jwt)
     window.localStorage.setItem(
-      `faucet-jwt:${process.env.NETWORK_IDENTIFIER}`,
+      `faucet-jwt:${NETWORK_IDENTIFIER}`,
       jwt
     )
   }
@@ -27,7 +28,7 @@ export const JwtProvider = ({ children }) => {
   const removeJwt = () => {
     setJwt('')
     window.localStorage.removeItem(
-      `faucet-jwt:${process.env.NETWORK_IDENTIFIER}`
+      `faucet-jwt:${NETWORK_IDENTIFIER}`
     )
   }
 
