@@ -235,35 +235,48 @@ export default () => {
             </Form>
           </Box>
         )}
-        <Box
-          display='flex'
-          flexDirection='row'
-          justifyContent='space-between'
-          alignItems='center'
-          flexWrap='wrap'
-        >
-          <Text
-            m={0}
-            px={3}
-            maxWidth={10}
-            whiteSpace='nowrap'
-            textOverflow='ellipsis'
-            overflow='hidden'
+        {(confirmed || err || confirming) && (
+          <Box
+            display='flex'
+            flexDirection='row'
+            justifyContent='space-between'
+            alignItems='center'
+            flexWrap='wrap'
+            height='100%'
           >
-            {StepHeaderTitle({ confirmed, confirming, error: err })}
-          </Text>
-          {confirming && !err && (
-            <Box mr={2}>
-              <Loading />
-            </Box>
-          )}
-          {confirmed && !err && (
-            <Button mx={2} variant='secondary' title='Return' onClick={back} />
-          )}
-          {err && (
-            <Button mx={2} variant='secondary' title='Retry' onClick={reset} />
-          )}
-        </Box>
+            <Text
+              m={0}
+              px={3}
+              maxWidth={10}
+              whiteSpace='nowrap'
+              textOverflow='ellipsis'
+              overflow='hidden'
+            >
+              {StepHeaderTitle({ confirmed, confirming, error: err })}
+            </Text>
+            {confirming && !err && (
+              <Box mr={2}>
+                <Loading />
+              </Box>
+            )}
+            {confirmed && !err && (
+              <Button
+                mx={2}
+                variant='secondary'
+                title='Return'
+                onClick={back}
+              />
+            )}
+            {err && (
+              <Button
+                mx={2}
+                variant='secondary'
+                title='Retry'
+                onClick={reset}
+              />
+            )}
+          </Box>
+        )}
       </Card>
       <Box
         display='flex'
