@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import LotusRpcEngine from '@openworklabs/lotus-jsonrpc-engine'
-import { FilecoinNumber } from '@openworklabs/filecoin-number'
+import LotusRpcEngine from '@glif/filecoin-rpc-client'
+import { FilecoinNumber } from '@glif/filecoin-number'
 import styled from 'styled-components'
-import { validateAddressString } from '@openworklabs/filecoin-address'
+import { validateAddressString } from '@glif/filecoin-address'
 import { LOTUS_NODE_JSONRPC } from '@env'
 
 import {

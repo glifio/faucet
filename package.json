@@ -8,14 +8,15 @@
     "start": "next start -p ${PORT-4002}"
   },
   "dependencies": {
-    "@openworklabs/filecoin-address": "0.0.4",
-    "@openworklabs/filecoin-number": "0.0.9",
-    "@openworklabs/lotus-jsonrpc-engine": "^0.1.2",
+    "@glif/filecoin-address": "^1.1.0-beta.10",
+    "@glif/filecoin-number": "^1.1.0-beta.11",
+    "@glif/filecoin-rpc-client": "^1.1.0-beta.11",
+    "@glif/react-components": "^1.1.0-beta.11",
     "axios": "^0.19.2",
-    "next": "9.4.4",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "styled-components": "^5.1.1",
+    "next": "^10.0.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1",
     "styled-system": "^5.1.5",
     "uuid": "^8.3.0"
   },

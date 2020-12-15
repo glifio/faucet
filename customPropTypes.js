@@ -1,4 +1,4 @@
-import { validateAddressString } from '@openworklabs/filecoin-address'
+import { validateAddressString } from '@glif/filecoin-address'
 
 export const ADDRESS_PROPTYPE = (props, propName, componentName) => {
   if (!validateAddressString(props[propName]))

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { func, string, bool } from 'prop-types'
-import { validateAddressString } from '@openworklabs/filecoin-address'
+import { validateAddressString } from '@glif/filecoin-address'
 import TextInput from './Text'
 
 const Address = forwardRef(
