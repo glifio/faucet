@@ -1,10 +1,16 @@
 import React from 'react'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
-import { Box, Title, Header, Label, Highlight } from './Shared'
+import {
+  Box,
+  Title,
+  Header,
+  Label,
+  Highlight,
+  HeaderGlyph
+} from '@glif/react-components'
 import CheckBalanceAmount from './CheckBalanceAmount'
 import { useJwt } from '../lib/JwtHandler'
-import HeaderGlyph from './Shared/Glyph/HeaderGlyph'
 
 export default () => {
   const { jwt } = useJwt()

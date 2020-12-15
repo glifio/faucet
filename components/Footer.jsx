@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text, StyledATag } from './Shared'
+import { Box, Text, StyledATag } from '@glif/react-components'
 
 export default () => (
   <Box
@@ -10,7 +10,6 @@ export default () => (
     bottom='0'
     width='100%'
     textAlign='center'
-
   >
     <Text m={0}>Made by</Text>
     <StyledATag

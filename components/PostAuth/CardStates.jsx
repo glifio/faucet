@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import { string } from 'prop-types'
-import { Box, Label, StyledATag, AddressLink, InlineBox } from '../Shared'
+import { Box, Label, StyledATag, AddressLink } from '@glif/react-components'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 
 export const Confirming = () => {

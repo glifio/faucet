@@ -10,9 +10,9 @@ import {
   Input,
   InputLabelBase,
   Label,
-  Card
-} from '../Shared'
-import Loading from '../Shared/LoaderGlyph'
+  Card,
+  Loading
+} from '@glif/react-components'
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
 import { useMessageConfirmation } from '../../lib/ConfirmMessage'

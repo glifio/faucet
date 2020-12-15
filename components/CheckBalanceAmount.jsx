@@ -4,7 +4,6 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import styled from 'styled-components'
 import { validateAddressString } from '@glif/filecoin-address'
 import { LOTUS_NODE_JSONRPC } from '@env'
-
 import {
   Box,
   Button,
@@ -12,9 +11,8 @@ import {
   Text,
   Input,
   InputLabelBase,
-  Label,
-  StepHeader
-} from './Shared'
+  Label
+} from '@glif/react-components'
 import reportError from '../utils/reportError'
 
 const Form = styled.form`

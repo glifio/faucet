@@ -1,6 +1,6 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { Box, Text, IconGitHub } from './Shared'
+import { Box, Text, IconGitHub } from '@glif/react-components'
 import { GITHUB_CLIENT_ID, GITHUB_REDIRECT_URL, OAUTH_STATE_STRING } from '@env'
 
 export default () => {
@@ -29,11 +29,7 @@ export default () => {
           }
         `}
         onClick={() => {
-          window.location.href = `https://github.com/login/oauth/authorize?client_id=${
-            GITHUB_CLIENT_ID
-          }&redirect_uri=${GITHUB_REDIRECT_URL}&state=${
-            OAUTH_STATE_STRING
-          }-${uuidv4()}`
+          window.location.href = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDIRECT_URL}&state=${OAUTH_STATE_STRING}-${uuidv4()}`
         }}
       >
         <IconGitHub size={5} mr={2} fill='#fff' />
