@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import { string } from 'prop-types'
-import { Box, Label, StyledATag, AddressLink, InlineBox } from '../Shared'
+import { Box, Label, StyledATag, AddressLink } from '@glif/react-components'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 
 export const Confirming = () => {
@@ -24,7 +23,7 @@ export const Confirmed = ({ address, enteredAddress, cid }) => {
     <>
       {address !== enteredAddress ? (
         <Box display='flex' alignItems='baseline' mr={2}>
-          <Label display='inline-block' my={0} mx={2}>
+          <Label display='inline-block' my={0} mr={1}>
             Filecoin sent to
           </Label>
           <AddressLink
@@ -55,9 +54,10 @@ export const Confirmed = ({ address, enteredAddress, cid }) => {
         rel='noopener noreferrer'
         target='_blank'
         border='none'
+        height='min-content'
         href={`https://filfox.info/en/message/${cid}`}
       >
-        <Label color='core.primary'>VIEW</Label>
+        VIEW
       </StyledATag>
     </>
   )

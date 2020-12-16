@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import LotusRpcEngine from '@openworklabs/lotus-jsonrpc-engine'
-import { FilecoinNumber } from '@openworklabs/filecoin-number'
+import LotusRpcEngine from '@glif/filecoin-rpc-client'
+import { FilecoinNumber } from '@glif/filecoin-number'
 import styled from 'styled-components'
-import { validateAddressString } from '@openworklabs/filecoin-address'
+import { validateAddressString } from '@glif/filecoin-address'
 import { LOTUS_NODE_JSONRPC } from '@env'
-
 import {
   Box,
   Button,
@@ -12,9 +11,8 @@ import {
   Text,
   Input,
   InputLabelBase,
-  Label,
-  StepHeader
-} from './Shared'
+  Label
+} from '@glif/react-components'
 import reportError from '../utils/reportError'
 
 const Form = styled.form`
@@ -108,6 +106,7 @@ export default () => {
           flexDirection='row'
           justifyContent='space-between'
           flexWrap='wrap'
+          height='100%'
         >
           <Form onSubmit={onSubmit}>
             <Box
@@ -116,6 +115,7 @@ export default () => {
               flexGrow='1'
               flexWrap='wrap'
               alignItems='center'
+              height='100%'
             >
               <InputLabelBase display='none' htmlFor='check-fil-address' />
               <Input.Base
@@ -123,6 +123,8 @@ export default () => {
                 width='100%'
                 flexShrink='1'
                 pr={8}
+                pl={3}
+                height='100%'
                 overflow='scroll'
                 placeholder='t1OwL...'
                 value={filAddress}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import { validateAddressString } from '@openworklabs/filecoin-address'
+import { validateAddressString } from '@glif/filecoin-address'
 
 import {
   Box,
@@ -10,9 +10,9 @@ import {
   Input,
   InputLabelBase,
   Label,
-  Card
-} from '../Shared'
-import Loading from '../Shared/LoaderGlyph'
+  Card,
+  Loading
+} from '@glif/react-components'
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
 import { useMessageConfirmation } from '../../lib/ConfirmMessage'
@@ -191,68 +191,92 @@ export default () => {
         }
       >
         {!confirming && !confirmed && !err && (
-          <Form onSubmit={onSubmit}>
-            <Box
-              position='relative'
-              display='flex'
-              flexGrow='1'
-              flexWrap='wrap'
-              alignItems='center'
-            >
-              <InputLabelBase display='none' htmlFor='fil-address' />
-              <Input.Base
-                id='fil-address'
-                width='100%'
-                pr={8}
-                overflow='scroll'
-                placeholder='t1OwL...'
-                value={filAddress}
-                onChange={(e) => {
-                  setErr('')
-                  setFilAddress(e.target.value)
-                }}
-              />
-              <Button
-                position='absolute'
-                right='0'
-                mx={2}
-                type='submit'
-                title='Request'
-                disabled={!filAddress}
-              />
-            </Box>
-          </Form>
-        )}
-        <Box
-          display='flex'
-          flexDirection='row'
-          justifyContent='space-between'
-          alignItems='center'
-          flexWrap='wrap'
-          height='100%'
-        >
-          <Text
-            m={0}
-            px={4}
-            maxWidth={10}
-            whiteSpace='nowrap'
-            textOverflow='ellipsis'
-            overflow='hidden'
+          <Box
+            display='flex'
+            flexDirection='row'
+            justifyContent='space-between'
+            flexWrap='wrap'
+            height='100%'
           >
-            {StepHeaderTitle({ confirmed, confirming, error: err })}
-          </Text>
-          {confirming && !err && (
-            <Box mr={2}>
-              <Loading />
-            </Box>
-          )}
-          {confirmed && !err && (
-            <Button mx={2} variant='secondary' title='Return' onClick={back} />
-          )}
-          {err && (
-            <Button mx={2} variant='secondary' title='Retry' onClick={reset} />
-          )}
-        </Box>
+            <Form onSubmit={onSubmit}>
+              <Box
+                position='relative'
+                display='flex'
+                flexGrow='1'
+                flexWrap='wrap'
+                alignItems='center'
+                height='100%'
+              >
+                <InputLabelBase display='none' htmlFor='fil-address' />
+                <Input.Base
+                  id='fil-address'
+                  width='100%'
+                  flexShrink='1'
+                  pr={8}
+                  pl={3}
+                  overflow='scroll'
+                  placeholder='t1OwL...'
+                  value={filAddress}
+                  onChange={(e) => {
+                    setErr('')
+                    setFilAddress(e.target.value)
+                  }}
+                />
+                <Button
+                  position='absolute'
+                  right='0'
+                  mx={2}
+                  px={4}
+                  type='submit'
+                  title='Request'
+                  disabled={!filAddress}
+                />
+              </Box>
+            </Form>
+          </Box>
+        )}
+        {(confirmed || err || confirming) && (
+          <Box
+            display='flex'
+            flexDirection='row'
+            justifyContent='space-between'
+            alignItems='center'
+            flexWrap='wrap'
+            height='100%'
+          >
+            <Text
+              m={0}
+              px={3}
+              maxWidth={10}
+              whiteSpace='nowrap'
+              textOverflow='ellipsis'
+              overflow='hidden'
+            >
+              {StepHeaderTitle({ confirmed, confirming, error: err })}
+            </Text>
+            {confirming && !err && (
+              <Box mr={2}>
+                <Loading />
+              </Box>
+            )}
+            {confirmed && !err && (
+              <Button
+                mx={2}
+                variant='secondary'
+                title='Return'
+                onClick={back}
+              />
+            )}
+            {err && (
+              <Button
+                mx={2}
+                variant='secondary'
+                title='Retry'
+                onClick={reset}
+              />
+            )}
+          </Box>
+        )}
       </Card>
       <Box
         display='flex'
@@ -260,7 +284,6 @@ export default () => {
         textAlign='left'
         minHeight={7}
         pt={3}
-        px={2}
         color='core.darkgray'
       >
         {confirming && !err && <Confirming />}

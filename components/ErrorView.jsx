@@ -1,7 +1,7 @@
 /* NOTE this should be replaced by shared component in the future */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Box, Glyph, Title, Text, StyledATag } from './Shared'
+import { Box, Glyph, Title, Text, StyledATag } from '@glif/react-components'
 
 const ErrorView = ({ title, description, linkDisplay, linkhref }) => (
   <Box
