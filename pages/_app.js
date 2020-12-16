@@ -49,8 +49,4 @@ class MyApp extends App {
   }
 }
 
-MyApp.getInitialProps = () => {
-  return {}
-}
-
 export default MyApp
