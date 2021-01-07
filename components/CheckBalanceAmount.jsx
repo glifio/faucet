@@ -3,7 +3,6 @@ import LotusRpcEngine from '@glif/filecoin-rpc-client'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import styled from 'styled-components'
 import { validateAddressString } from '@glif/filecoin-address'
-import { LOTUS_NODE_JSONRPC } from '@env'
 import {
   Box,
   Button,
@@ -35,7 +34,7 @@ export default () => {
       setLoading(true)
       try {
         const lotus = new LotusRpcEngine({
-          apiAddress: LOTUS_NODE_JSONRPC
+          apiAddress: process.env.NEXT_PUBLIC_LOTUS_NODE_JSONRPC
         })
 
         const balance = new FilecoinNumber(
