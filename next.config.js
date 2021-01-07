@@ -1,7 +1,11 @@
 const webpack = require('webpack')
 const path = require('path')
+const {
+  PHASE_PRODUCTION_BUILD,
+  PHASE_PRODUCTION_SERVER
+} = require('next/constants')
 
-module.exports = {
+module.exports = (phase) => ({
   webpack(config) {
     config.resolve.alias = {
       ...config.resolve.alias,
@@ -20,7 +24,8 @@ module.exports = {
     NEXT_PUBLIC_OAUTH_STATE_STRING: process.env.OAUTH_STATE_STRING,
     NEXT_PUBLIC_LOTUS_NODE_JSONRPC: process.env.LOTUS_NODE_JSONRPC,
     NEXT_PUBLIC_NETWORK_IDENTIFIER: process.env.NETWORK_IDENTIFIER,
-    NEXT_PUBLIC_IS_PROD: process.env.IS_PROD
+    NEXT_PUBLIC_IS_PROD:
+      phase === PHASE_PRODUCTION_SERVER || phase === PHASE_PRODUCTION_BUILD
   },
   publicRuntimeConfig: {
     // Will be available on both server and client
@@ -28,4 +33,4 @@ module.exports = {
   serverRuntimeConfig: {
     // Will only be available on the server side
   }
-}
+})

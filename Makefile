@@ -10,8 +10,7 @@ build:
 	--build-arg OAUTH_STATE_STRING=$OAUTH_STATE_STRING \
 	--build-arg LOTUS_NODE_JSONRPC=$LOTUS_NODE_JSONRPC \
 	--build-arg NETWORK_IDENTIFIER=$NETWORK_IDENTIFIER \
-	--build-arg IS_PROD=$IS_PROD \
-	-t glif/faucet:1.6.0 .
+	-t glif/faucet:latest .
 
 run:
-	docker run -d -p 4002:4002 --name faucet --restart always glif/faucet:1.6.0
+	docker run -d -p 4002:4002 --name faucet --restart always glif/faucet:latest
