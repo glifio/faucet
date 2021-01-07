@@ -1,6 +1,5 @@
 import React, { useState, createContext, useContext, useEffect } from 'react'
 import { node } from 'prop-types'
-import { NETWORK_IDENTIFIER } from '@env'
 
 const JwtContext = createContext({})
 
@@ -10,7 +9,7 @@ export const JwtProvider = ({ children }) => {
   useEffect(() => {
     if (!!window && typeof window !== 'undefined') {
       const jwt = window.localStorage.getItem(
-        `faucet-jwt:${NETWORK_IDENTIFIER}`
+        `faucet-jwt:${process.env.NEXT_PUBLIC_NETWORK_IDENTIFIER}`
       )
       if (jwt) setJwt(jwt)
     }
@@ -18,12 +17,17 @@ export const JwtProvider = ({ children }) => {
 
   const storeJwt = (jwt) => {
     setJwt(jwt)
-    window.localStorage.setItem(`faucet-jwt:${NETWORK_IDENTIFIER}`, jwt)
+    window.localStorage.setItem(
+      `faucet-jwt:${process.env.NEXT_PUBLIC_NETWORK_IDENTIFIER}`,
+      jwt
+    )
   }
 
   const removeJwt = () => {
     setJwt('')
-    window.localStorage.removeItem(`faucet-jwt:${NETWORK_IDENTIFIER}`)
+    window.localStorage.removeItem(
+      `faucet-jwt:${process.env.NEXT_PUBLIC_NETWORK_IDENTIFIER}`
+    )
   }
 
   return (
